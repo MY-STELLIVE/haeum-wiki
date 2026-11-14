@@ -298,3 +298,40 @@ body.menu-open .menu-backdrop{opacity:1;visibility:visible}
  #page-main .profile-document>.subgrid{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){#page-main .profile-toc a{transition:none}}
+
+
+/* v2.6.6 — mobile-first document rhythm and consistent touch targets */
+@media(max-width:700px){
+  .article{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:clamp(15px,4vw,20px)}
+  .article h1{font-size:clamp(25px,7vw,31px);line-height:1.22;overflow-wrap:anywhere}
+  .article h2{font-size:20px;line-height:1.4;margin-top:29px;scroll-margin-top:82px}
+  .article h3{font-size:16px;line-height:1.45;margin-top:20px}
+  .article p,.article li{font-size:13px;line-height:1.9;overflow-wrap:anywhere}
+  .article .subtitle{font-size:12px;line-height:1.65}
+  .article .meta{gap:6px;margin:12px 0 18px}
+  .article .pill{font-size:11px;padding:5px 8px}
+  .article .toc{width:100%;max-width:none;box-sizing:border-box}
+  .article .subgrid,.article .phasegrid{grid-template-columns:minmax(0,1fr)!important}
+  .article .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .article .stats-insight-grid,.article .stats-periods{grid-template-columns:minmax(0,1fr)}
+  .article .profile-lead{grid-template-columns:minmax(0,1fr)!important}
+  .article .related-grid{grid-template-columns:minmax(0,1fr)}
+  .article .tablewrap{width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .article .tablewrap table{min-width:560px}
+  .article .note{font-size:12px;line-height:1.8;padding:12px 13px}
+  .article .subcard{min-width:0;overflow-wrap:anywhere}
+  .article .stats-chart{max-width:100%;box-sizing:border-box}
+  .article .statbar-row{grid-template-columns:minmax(82px,104px) minmax(30px,1fr) 34px;gap:6px}
+  .article .statbar-row>span{font-size:10px}
+  .article .statbar-row>b{font-size:10px}
+  .backtop{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));width:44px;height:44px}
+}
+@media(max-width:380px){
+  .article .metric-grid{grid-template-columns:minmax(0,1fr)}
+  .article .statbar-row{grid-template-columns:82px minmax(24px,1fr) 30px;gap:5px}
+  .article .profile-data .info-row{grid-template-columns:86px minmax(0,1fr)!important}
+}
+@media(hover:none){
+  .ui-btn:hover,.ui-icon-btn:hover,.ui-card-link:hover,.subcard.ui-card:hover{transform:none}
+  .ui-btn:active,.ui-icon-btn:active,.ui-tab:active{filter:brightness(1.12);transform:scale(.985)}
+}

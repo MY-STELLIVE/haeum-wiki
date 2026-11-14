@@ -1,0 +1,79 @@
+/* 해음위키 v2.7.0 — document layout refinement (mobile-web first) */
+:root{--doc-radius:18px;--doc-space:clamp(16px,2.4vw,26px)}
+/* Every document reads in one clear vertical sequence; grids are reserved for summaries/cards. */
+.page{min-width:0}
+.article{min-width:0;overflow-wrap:anywhere}
+.article>h1,.article>.subtitle,.article>.meta{max-width:100%}
+.article>p,.article>ul,.article>ol,.article>.note,.article>.toc,.article>.tablewrap,.article>h2,.article>h3,.article>.stats-chart,.article>.stats-periods,.article>.stats-insight-grid,.article>.metric-grid,.article>.stats-jump,.article>.related-docs{clear:both}
+.article>p{max-width:78ch;line-height:1.9;text-wrap:pretty}
+.article h2{padding-top:3px;scroll-margin-top:92px}
+.article h3{scroll-margin-top:92px}
+/* Profile: information panel first, then introduction, note, contents and full-width narrative. */
+.profile-document .main-hero-banner{margin-bottom:20px}
+.profile-document .infobox{float:none!important;width:100%!important;max-width:none!important;margin:0 0 22px!important;display:grid;grid-template-columns:minmax(190px,240px) minmax(0,1fr);grid-template-rows:auto 1fr;gap:0 24px;align-items:start}
+.profile-document .infobox h3{grid-column:1/-1;grid-row:1}
+.profile-document .profile-visual{grid-column:1;grid-row:2;min-width:0}
+.profile-document .profile-data{grid-column:2;grid-row:2;min-width:0}
+.profile-document .profile-heading{clear:both;margin:22px 0 14px;padding-top:4px}
+.profile-document .profile-lead{display:grid;grid-template-columns:1fr;gap:8px;margin:14px 0 18px}
+.profile-document .profile-lead p{max-width:78ch;margin:0;padding:0}
+.profile-document .profile-note{margin:16px 0}
+.profile-document .profile-toc{width:100%;max-width:none;margin:18px 0 22px}
+.profile-document>.toc ol{columns:1}
+.profile-document>h2,.profile-document>h3,.profile-document>p,.profile-document>.tablewrap,.profile-document>.subgrid{width:100%;max-width:100%}
+.profile-document>.subgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+/* Stats: keep summary grids compact, but preserve a single readable column for long analysis. */
+.stats-page>.stats-jump{display:flex;flex-wrap:wrap;gap:8px}
+.stats-page>.stats-chart{max-width:100%;overflow:hidden}
+.stats-page .statbar-row{min-width:0}
+.stats-page .statbar-row>span{overflow-wrap:anywhere;line-height:1.45}
+.stats-page .tablewrap{max-width:100%;overflow-x:auto}
+.stats-page .stats-footnote{font-size:12px;line-height:1.75}
+/* Tables and cards: consistent spacing and horizontal scroll without shrinking text into unreadability. */
+.article .tablewrap{position:relative;max-width:100%;margin:14px 0 20px;border:1px solid var(--line);border-radius:13px}
+.article .tablewrap table{min-width:540px}
+.article .subgrid,.related-grid{align-items:stretch}
+.subcard,.related-card{min-width:0;overflow-wrap:anywhere}
+/* Contents and jump controls share one visual rhythm. */
+.toc,.stats-jump{border-radius:var(--doc-radius)}
+.toc li{line-height:1.65}
+.toc a,.stats-jump a{min-height:38px}
+/* Tablet */
+@media(max-width:900px){
+ .profile-document .infobox{grid-template-columns:minmax(150px,32%) minmax(0,1fr);gap:0 18px}
+ .profile-document .profile-data .info-row{grid-template-columns:100px minmax(0,1fr)}
+ .profile-document>.subgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* Mobile web: one column for all narrative content and cards. */
+@media(max-width:700px){
+ .article{padding:clamp(16px,4vw,21px)}
+ .article>p{max-width:none;font-size:14px;line-height:1.88}
+ .article h2{margin-top:30px;margin-bottom:12px;font-size:20px}
+ .article h3{margin-top:22px;font-size:16px}
+ .profile-document .infobox{display:flex;flex-direction:column;align-items:stretch;gap:13px;padding:15px}
+ .profile-document .infobox h3{width:100%;margin:0}
+ .profile-document .profile-visual{width:min(100%,230px);align-self:center}
+ .profile-document .profile-photo{width:100%;max-width:230px;aspect-ratio:1/1;object-fit:cover}
+ .profile-document .profile-data{width:100%}
+ .profile-document .profile-data .info-row{grid-template-columns:minmax(88px,32%) minmax(0,1fr)!important;gap:9px;font-size:13px!important}
+ .profile-document .profile-data .profile-links{display:grid;grid-template-columns:1fr;gap:8px}
+ .profile-document .profile-heading{margin-top:18px}
+ .profile-document .profile-lead{display:block}
+ .profile-document .profile-lead p+p{margin-top:10px}
+ .profile-document .profile-toc{padding:14px;margin:16px 0 20px}
+ .profile-document>.subgrid{grid-template-columns:1fr;gap:9px}
+ .stats-page .stats-insight-grid,.stats-page .stats-periods{grid-template-columns:1fr}
+ .stats-page .stats-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .stats-page .stats-periods>div{grid-template-columns:minmax(0,1fr) auto;gap:5px 10px}
+ .stats-page .statbar-row{grid-template-columns:minmax(0,1fr) 76px 36px;gap:7px;font-size:11px}
+ .stats-page .statbar-track{min-width:0}
+ .stats-page .tablewrap table{min-width:610px}
+ .article .subgrid{grid-template-columns:1fr}
+ .toc ol{columns:1!important}
+}
+@media(max-width:380px){
+ .profile-document .profile-data .info-row{grid-template-columns:82px minmax(0,1fr)!important;font-size:12px!important}
+ .stats-page .stats-metrics{gap:7px}
+ .stats-page .statbar-row{grid-template-columns:minmax(0,1fr) 58px 32px;gap:5px;font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){.toc ol,.toc-toggle,.related-card,.subcard{transition:none!important}}

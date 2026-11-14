@@ -1,0 +1,98 @@
+/* HAEUM WIKI UI component system v2.6.3 */
+:root{
+  --ui-blue:#5daeff;--ui-blue-2:#8fd5ff;--ui-violet:#9875ff;--ui-pink:#d5a4ff;
+  --ui-glass:linear-gradient(145deg,rgba(45,65,98,.88),rgba(25,32,52,.94));
+  --ui-glass-soft:linear-gradient(145deg,rgba(38,52,76,.72),rgba(25,31,47,.84));
+  --ui-glow:0 0 0 1px rgba(151,190,255,.08),0 8px 24px rgba(4,10,28,.22);
+  --ui-radius:14px;--ui-radius-sm:10px;
+}
+/* Existing site buttons: preserve behavior, refine visual feedback. */
+.btn,.theme-btn,.home-button,.social-link,.mobilemenu{
+  min-height:38px;border:1px solid rgba(133,163,210,.34);border-radius:12px;
+  background:var(--ui-glass-soft);color:var(--text);font-weight:650;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),var(--ui-glow);
+  transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease,color .18s ease;
+}
+.btn:hover,.theme-btn:hover,.home-button:hover,.social-link:hover,.mobilemenu:hover{
+  border-color:rgba(126,190,255,.82);color:var(--text);
+  background:linear-gradient(145deg,rgba(52,83,133,.92),rgba(38,43,83,.96));
+  box-shadow:0 0 0 3px rgba(105,166,255,.10),0 8px 22px rgba(30,73,145,.2);
+  text-decoration:none;transform:translateY(-1px)
+}
+.btn:active,.theme-btn:active,.home-button:active,.social-link:active,.mobilemenu:active{transform:translateY(0) scale(.97)}
+.btn:focus-visible,.theme-btn:focus-visible,.home-button:focus-visible,.social-link:focus-visible,.mobilemenu:focus-visible,
+.ui-btn:focus-visible,.ui-tab:focus-visible,.ui-icon-btn:focus-visible{outline:3px solid rgba(126,190,255,.9);outline-offset:3px}
+.theme-btn[aria-pressed="true"]{border-color:#91caff;background:linear-gradient(135deg,#385d91,#4a438d);color:#fff;box-shadow:inset 0 1px 0 #ffffff30,0 0 18px #659fff30}
+.social-link{font-size:12px}
+/* Reusable button variants */
+.ui-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:10px 16px;border:1px solid transparent;border-radius:12px;font:inherit;font-weight:750;line-height:1.2;text-decoration:none;cursor:pointer;user-select:none;transition:all .18s ease}
+.ui-btn:hover{text-decoration:none;transform:translateY(-1px)}.ui-btn:active{transform:scale(.97)}
+.ui-btn-primary{color:#fff;background:linear-gradient(110deg,#398eea,#6357e9 72%,#8c58ef);border-color:#91c8ff;box-shadow:inset 0 1px 0 #ffffff55,0 5px 18px #526fe94a}
+.ui-btn-primary:hover{filter:brightness(1.12);box-shadow:0 0 0 3px #79baff24,0 8px 24px #526fe966}
+.ui-btn-secondary{color:var(--text);background:var(--ui-glass);border-color:#637da7;box-shadow:inset 0 1px 0 #ffffff20,var(--ui-glow)}
+.ui-btn-secondary:hover{border-color:#9ccfff;background:linear-gradient(135deg,#344e75,#39335f)}
+.ui-btn-quiet{color:var(--accent);background:transparent;border-color:transparent}.ui-btn-quiet:hover{background:#83baff16;border-color:#83baff55}
+.ui-btn-danger{color:#fff;background:linear-gradient(120deg,#a94465,#75365d);border-color:#e28aa8}
+.ui-btn:disabled,.ui-btn[aria-disabled="true"]{opacity:.42;cursor:not-allowed;filter:saturate(.5);transform:none;box-shadow:none}
+.ui-btn-sm{min-height:34px;padding:7px 11px;border-radius:10px;font-size:13px}.ui-btn-lg{min-height:50px;padding:13px 20px;border-radius:15px}
+.ui-btn-block{width:100%}
+/* Icon-only controls */
+.ui-icon-btn{display:inline-grid;place-items:center;width:42px;height:42px;padding:0;border:1px solid #536b91;border-radius:13px;background:var(--ui-glass-soft);color:#dceaff;cursor:pointer;box-shadow:inset 0 1px 0 #ffffff20,var(--ui-glow);transition:all .18s ease}
+.ui-icon-btn:hover{color:#fff;border-color:#9acbff;background:linear-gradient(145deg,#315a91,#46377b);transform:translateY(-1px)}.ui-icon-btn:active{transform:scale(.95)}.ui-icon-btn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8}
+/* Tabs and segmented controls */
+.ui-tabs{display:flex;gap:5px;flex-wrap:wrap;padding:5px;border:1px solid #3d506e;border-radius:14px;background:#121b2b}
+.ui-tab{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:8px 13px;border:1px solid transparent;border-radius:10px;background:transparent;color:var(--muted);font:inherit;font-weight:700;cursor:pointer;transition:all .18s ease}
+.ui-tab:hover{color:var(--text);background:#ffffff0b}.ui-tab[aria-selected="true"],.ui-tab.active{color:#fff;background:linear-gradient(120deg,#3569ad,#5545a0);border-color:#91c5ff;box-shadow:0 0 16px #659fff28}
+/* Status badges and topic tags */
+.ui-badge{display:inline-flex;align-items:center;gap:5px;min-height:24px;padding:4px 9px;border:1px solid #60779b;border-radius:999px;background:#27364e;color:#dceaff;font-size:11px;font-weight:800;line-height:1.2;white-space:nowrap}
+.ui-badge-blue{background:#244c7b;border-color:#579bdf;color:#d9efff}.ui-badge-violet{background:#45316f;border-color:#9a77e9;color:#f0e5ff}.ui-badge-pink{background:#653b5d;border-color:#c77eaf;color:#ffe5f5}.ui-badge-green{background:#20574f;border-color:#5bb9a5;color:#d8fff4}.ui-badge-amber{background:#654b27;border-color:#d8ad59;color:#fff0c8}.ui-badge-red{background:#6a3544;border-color:#db8296;color:#ffe4eb}.ui-badge-muted{background:#293242;border-color:#4b596e;color:#c1cada}
+/* Content and related-document cards */
+.ui-card{min-width:0;padding:15px;border:1px solid #3e526f;border-radius:var(--ui-radius);background:var(--ui-glass-soft);box-shadow:var(--ui-glow)}
+.ui-card-link{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;transition:all .18s ease}.ui-card-link:hover{border-color:#8ebfff;background:linear-gradient(135deg,#2b456c,#30294f);transform:translateY(-2px);text-decoration:none}
+.ui-card-icon{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border:1px solid #728ec2;border-radius:12px;background:linear-gradient(145deg,#315b9b,#57418f);color:#eef6ff;font-size:19px}
+.ui-card-title{display:block;font-weight:800}.ui-card-desc{display:block;margin-top:3px;color:var(--muted);font-size:12px;line-height:1.45}
+/* Notices, quotes, warnings */
+.ui-callout{margin:14px 0;padding:13px 15px;border:1px solid #4c6d9b;border-left:4px solid #65b7ff;border-radius:12px;background:linear-gradient(110deg,#1e3d63aa,#242b49aa);color:var(--text)}
+.ui-callout-title{display:block;margin-bottom:4px;font-weight:850}.ui-callout-info{border-color:#579bdf;background:linear-gradient(110deg,#1c4770aa,#252e57aa)}.ui-callout-note{border-color:#9b7de1;background:linear-gradient(110deg,#382d65aa,#292c50aa)}.ui-callout-warn{border-color:#d8ad59;background:linear-gradient(110deg,#594321aa,#302a35aa)}
+/* Statistics tiles */
+.ui-stat{padding:14px;border:1px solid #526c92;border-radius:14px;background:linear-gradient(145deg,#293d60,#20243e);text-align:center;min-width:0}
+.ui-stat-label{display:block;color:#b7c8e0;font-size:12px}.ui-stat-value{display:block;margin:4px 0;color:#f1f6ff;font-size:clamp(20px,4vw,28px);font-weight:850;font-variant-numeric:tabular-nums;line-height:1.2}
+@media(max-width:600px){.ui-btn{min-height:44px}.ui-icon-btn{width:44px;height:44px}.ui-card{padding:13px}.ui-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.ui-tab{min-width:0;padding:8px 6px;font-size:13px}.topactions .btn{min-height:36px}}
+@media(prefers-reduced-motion:reduce){.ui-btn,.ui-icon-btn,.ui-tab,.ui-card-link,.btn,.theme-btn,.home-button,.social-link,.mobilemenu{transition:none!important;scroll-behavior:auto!important}}
+
+
+/* v2.6.6 — unified application of the component system */
+:root[data-theme="light"]{
+ --ui-glass:linear-gradient(145deg,rgba(255,255,255,.96),rgba(237,243,252,.98));
+ --ui-glass-soft:linear-gradient(145deg,rgba(255,255,255,.94),rgba(232,239,250,.96));
+ --ui-glow:0 0 0 1px rgba(65,103,157,.06),0 7px 20px rgba(40,65,100,.10);
+}
+:root[data-theme="light"] .ui-btn-primary{color:#fff}
+:root[data-theme="light"] .ui-btn-secondary,:root[data-theme="light"] .ui-icon-btn{color:#243650;background:linear-gradient(145deg,#fff,#eaf1fb);border-color:#bdcce0}
+:root[data-theme="light"] .ui-tabs{background:#e9eff8;border-color:#d0dbea}
+:root[data-theme="light"] .ui-tab{color:#52647d}
+:root[data-theme="light"] .ui-tab[aria-selected="true"],:root[data-theme="light"] .ui-tab.active{color:#fff}
+:root[data-theme="light"] .ui-badge{background:#edf3fb;color:#344966;border-color:#c6d4e7}
+:root[data-theme="light"] .ui-card{background:linear-gradient(145deg,#fff,#f0f4fb);border-color:#d3deed}
+:root[data-theme="light"] .ui-callout{color:#263951}
+:root[data-theme="light"] .ui-stat{background:linear-gradient(145deg,#edf4ff,#e8eafb);border-color:#cbd8eb}
+:root[data-theme="light"] .ui-stat-label{color:#52647d}
+:root[data-theme="light"] .ui-stat-value{color:#243650}
+/* Apply one visual language to existing live controls without changing their actions. */
+.profile-links a.ui-btn,.stats-jump a.ui-btn,.toc a.ui-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;text-decoration:none}
+.profile-links a.ui-btn{min-height:42px}
+.stats-jump a.ui-btn{min-height:38px}
+.toc a.ui-btn{width:100%;justify-content:flex-start;min-height:40px;padding:8px 10px}
+.subcard.ui-card{display:block;color:var(--text);text-decoration:none;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+.subcard.ui-card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.related-card.ui-card-link{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-height:88px;padding:13px 40px 13px 14px;border:1px solid var(--line);border-radius:13px;background:var(--panel);color:var(--text)}
+.note.ui-callout{border-left-width:4px;color:var(--text)}
+.metric.ui-stat,.stats-insight.ui-card{min-width:0}
+.navitem:focus-visible,.related-card:focus-visible,.subcard:focus-visible{outline:3px solid var(--ui-blue);outline-offset:3px}
+@media(max-width:600px){
+ .ui-btn{min-height:44px}
+ .profile-links a.ui-btn{width:100%}
+ .stats-jump a.ui-btn{flex:1 1 calc(50% - 6px)}
+ .toc a.ui-btn{min-height:44px}
+ .related-card.ui-card-link{min-height:78px}
+}
