@@ -11,7 +11,7 @@ function showPage(id){
  const target=$(`#page-${id}`);if(!target)return;
  $$('.navitem').forEach(a=>a.classList.toggle('active',a.dataset.page===id));
  const crumb=$('#crumbName');if(crumb)crumb.textContent=pages[id];
- document.title=pages[id]+' - 해음위키 v2.5.7';
+ document.title=pages[id]+' - 해음위키 v2.5.9';
  closeMenu();closeSearch();
  const search=$('#search');if(search){search.value='';updateClearButton();}
  target.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'});
@@ -88,3 +88,27 @@ if('IntersectionObserver'in window){
  },{rootMargin:'-18% 0px -68% 0px',threshold:[0,.1,.25,.5]});
  $$('[id^="page-"]').forEach(section=>observer.observe(section));
 }
+
+
+// v2.6.0 — reading progress, compact mobile contents and table scroll hints.
+(()=>{
+ const bar=$('#readingProgressBar');let scheduled=false;
+ const update=()=>{if(!bar)return;const root=document.documentElement;const max=root.scrollHeight-window.innerHeight;const value=max>0?Math.min(100,Math.max(0,window.scrollY/max*100)):0;bar.style.width=value+'%';scheduled=false;};
+ window.addEventListener('scroll',()=>{if(!scheduled){requestAnimationFrame(update);scheduled=true;}},{passive:true});window.addEventListener('resize',update);update();
+})();
+
+(()=>{
+ $$('.toc').forEach((toc,index)=>{
+  const title=$('.toc-title',toc),list=$('ol',toc);if(!title||!list)return;
+  const button=document.createElement('button');button.type='button';button.className='toc-toggle';button.textContent='목차 열기';button.setAttribute('aria-expanded','false');button.setAttribute('aria-label','문서 목차 펼치기');
+  title.append(button);
+  button.addEventListener('click',()=>{const open=toc.classList.toggle('is-open');button.textContent=open?'목차 접기':'목차 열기';button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',open?'문서 목차 접기':'문서 목차 펼치기');});
+  list.addEventListener('click',event=>{if(event.target.closest('a')&&window.matchMedia('(max-width:700px)').matches){toc.classList.remove('is-open');button.textContent='목차 열기';button.setAttribute('aria-expanded','false');}});
+ });
+})();
+
+(()=>{
+ const update=wrap=>{const scrollable=wrap.scrollWidth>wrap.clientWidth+2;wrap.classList.toggle('is-scrollable',scrollable);wrap.classList.toggle('is-at-end',scrollable&&wrap.scrollLeft+wrap.clientWidth>=wrap.scrollWidth-3);};
+ $$('.tablewrap').forEach(wrap=>{update(wrap);wrap.addEventListener('scroll',()=>update(wrap),{passive:true});});
+ window.addEventListener('resize',()=>$$('.tablewrap').forEach(update));
+})();
