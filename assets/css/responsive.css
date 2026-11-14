@@ -126,3 +126,18 @@ img,svg{max-width:100%}
  .info-row{grid-template-columns:82px minmax(0,1fr)!important}
 }
 @media(hover:none){.navitem:hover,.btn:hover{transform:none}.artwork-card a:hover img{transform:none}}
+
+
+/* v2.5.1: compact and tappable theme controls on phones. */
+@media(max-width:850px){
+ .topactions{z-index:25}
+ .theme-switch{position:relative;z-index:26;pointer-events:auto}
+ .theme-btn{min-width:42px;min-height:42px;touch-action:manipulation}
+}
+@media(max-width:600px){
+ .topactions{min-width:0}
+ .theme-switch{display:flex;max-width:150px}
+ .theme-btn{width:40px;min-width:40px;padding:5px 4px;font-size:14px}
+ .theme-btn span{display:none}
+ .footer{padding:22px 12px calc(24px + env(safe-area-inset-bottom));line-height:1.9;overflow-wrap:anywhere}
+}
