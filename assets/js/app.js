@@ -51,22 +51,38 @@ document.addEventListener("click",e=>{
 });
 
 
-// v2.5: three selectable themes (saved on this device).
-const themeButtons = document.querySelectorAll('[data-theme]');
-const themeMeta = document.getElementById('themeColorMeta');
-const themeColors = { light: '#f5f7fb', dark: '#111318', signature: '#090f26' };
-function applyTheme(theme, save = false) {
-  const selected = ['light', 'dark', 'signature'].includes(theme) ? theme : 'signature';
-  document.documentElement.dataset.theme = selected;
-  themeButtons.forEach(button => {
-    const active = button.dataset.theme === selected;
-    button.classList.toggle('active', active);
-    button.setAttribute('aria-pressed', String(active));
+// v2.5.1: reliable three-theme switching and persistence.
+(() => {
+  const root = document.documentElement;
+  const themeButtons = [...document.querySelectorAll('.theme-btn[data-theme]')];
+  const themeMeta = document.getElementById('themeColorMeta');
+  const themeColors = { light: '#f4f6fa', dark: '#111318', signature: '#101b3c' };
+  const validThemes = Object.keys(themeColors);
+
+  function applyTheme(theme, persist = false) {
+    const selected = validThemes.includes(theme) ? theme : 'signature';
+    root.dataset.theme = selected;
+    root.style.colorScheme = selected === 'light' ? 'light' : 'dark';
+    themeButtons.forEach((button) => {
+      const active = button.dataset.theme === selected;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    if (themeMeta) themeMeta.setAttribute('content', themeColors[selected]);
+    if (persist) {
+      try { localStorage.setItem('haeum-wiki-theme', selected); } catch (error) { /* storage may be disabled */ }
+    }
+  }
+
+  // Delegation remains reliable if the header is rearranged for mobile.
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest('.theme-btn[data-theme]');
+    if (!button) return;
+    event.preventDefault();
+    applyTheme(button.dataset.theme, true);
   });
-  if (themeMeta) themeMeta.setAttribute('content', themeColors[selected]);
-  if (save) { try { localStorage.setItem('haeum-wiki-theme', selected); } catch (_) {} }
-}
-themeButtons.forEach(button => button.addEventListener('click', () => applyTheme(button.dataset.theme, true)));
-let savedTheme = 'signature';
-try { savedTheme = localStorage.getItem('haeum-wiki-theme') || 'signature'; } catch (_) {}
-applyTheme(savedTheme);
+
+  let initialTheme = 'signature';
+  try { initialTheme = localStorage.getItem('haeum-wiki-theme') || 'signature'; } catch (error) { /* use default */ }
+  applyTheme(initialTheme);
+})();
