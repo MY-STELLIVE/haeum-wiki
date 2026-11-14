@@ -1,4 +1,4 @@
-/* HAEUM WIKI v2.6.1 — accessible navigation, expanded search and responsive controls */
+/* HAEUM WIKI v2.6.2 — accessible navigation, expanded search and responsive controls */
 const pages={main:"뭐해음",broadcast:"방송 활동",stats:"방송 통계",community:"SNS·팬 커뮤니티",avatar:"캐릭터·버추얼 모델",illustrations:"방송 일러스트",timeline:"활동 연혁",evaluation:"종합 평가",fandom:"토토단"};
 const $=(selector,root=document)=>root.querySelector(selector);
 const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
@@ -11,7 +11,7 @@ function showPage(id){
  const target=$(`#page-${id}`);if(!target)return;
  $$('.navitem').forEach(a=>a.classList.toggle('active',a.dataset.page===id));
  const crumb=$('#crumbName');if(crumb)crumb.textContent=pages[id];
- document.title=pages[id]+' - 해음위키 v2.6.1';
+ document.title=pages[id]+' - 해음위키 v2.6.2';
  closeMenu();closeSearch();
  const search=$('#search');if(search){search.value='';updateClearButton();}
  target.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'});
@@ -111,4 +111,51 @@ if('IntersectionObserver'in window){
  const update=wrap=>{const scrollable=wrap.scrollWidth>wrap.clientWidth+2;wrap.classList.toggle('is-scrollable',scrollable);wrap.classList.toggle('is-at-end',scrollable&&wrap.scrollLeft+wrap.clientWidth>=wrap.scrollWidth-3);};
  $$('.tablewrap').forEach(wrap=>{update(wrap);wrap.addEventListener('scroll',()=>update(wrap),{passive:true});});
  window.addEventListener('resize',()=>$$('.tablewrap').forEach(update));
+})();
+
+
+// v2.6.2 — related-document navigation across the wiki.
+(()=>{
+ const relations={
+  main:['broadcast','stats','community','avatar','illustrations','timeline','fandom'],
+  broadcast:['stats','timeline','community','main'],
+  stats:['broadcast','timeline','evaluation','main'],
+  community:['fandom','timeline','broadcast','main'],
+  avatar:['illustrations','main','timeline','evaluation'],
+  illustrations:['avatar','main','broadcast'],
+  timeline:['broadcast','community','stats','fandom'],
+  evaluation:['stats','broadcast','community','avatar'],
+  fandom:['community','timeline','main']
+ };
+ const descriptions={
+  main:'방송인 기본 정보와 주요 활동을 소개합니다.',
+  broadcast:'방송 콘텐츠와 진행 방식, 편성 기록을 살펴봅니다.',
+  stats:'세션별 방송 시간과 시청자·채팅 지표를 확인합니다.',
+  community:'X와 네이버 팬카페의 공개 활동을 정리합니다.',
+  avatar:'캐릭터 디자인과 버추얼 모델 준비 내용을 정리합니다.',
+  illustrations:'방송 관련 일러스트 자료와 설명을 모았습니다.',
+  timeline:'방송 및 커뮤니티의 주요 날짜별 기록입니다.',
+  evaluation:'확인된 자료를 바탕으로 초기 활동을 종합합니다.',
+  fandom:'토토단 명칭과 관련된 공개 기록을 확인합니다.'
+ };
+ const titles={...pages};
+ Object.entries(relations).forEach(([id,ids])=>{
+  const article=$(`#page-${id} .article`);if(!article||$('.related-docs',article))return;
+  const section=document.createElement('section');section.className='related-docs';section.setAttribute('aria-label','관련 문서');
+  const heading=document.createElement('div');heading.className='related-head';
+  const label=document.createElement('div');label.innerHTML='<span>EXPLORE MORE</span><h2>관련 문서</h2>';
+  const hint=document.createElement('small');hint.textContent='함께 읽으면 좋은 문서';heading.append(label,hint);section.append(heading);
+  const grid=document.createElement('div');grid.className='related-grid';
+  ids.forEach(next=>{
+   const a=document.createElement('a');a.className='related-card';a.href=`#page-${next}`;a.dataset.page=next;
+   const top=document.createElement('span');top.className='related-card-kicker';top.textContent='HAEUM WIKI DOCUMENT';
+   const title=document.createElement('strong');title.textContent=titles[next];
+   const desc=document.createElement('small');desc.textContent=descriptions[next];
+   const arrow=document.createElement('span');arrow.className='related-arrow';arrow.textContent='→';arrow.setAttribute('aria-hidden','true');
+   a.append(top,title,desc,arrow);grid.append(a);
+  });
+  section.append(grid);
+  const note=$('.note:last-of-type',article);
+  article.append(section);
+ });
 })();
