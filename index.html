@@ -1,25 +1,30 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#10131b" id="themeColorMeta">
-<title>해음위키 v2.5.1 - 뭐해음</title>
+<meta name="theme-color" content="#111318" id="themeColorMeta">
+<title>해음위키 v2.5.4 - 뭐해음</title>
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
 <header class="topbar"><div class="topinner">
-<button class="btn mobilemenu" id="menuBtn" aria-label="메뉴 열기">☰</button>
+<button class="btn mobilemenu" id="menuBtn" type="button" aria-label="메뉴 열기" aria-controls="sidebar" aria-expanded="false">☰</button>
 <a class="brand" href="#" data-page="main" aria-label="해음위키 홈">
 <img class="brandwordmark" src="assets/images/haeum-wordmark.webp" alt="해음위키 HAEUM WIKI 워드마크">
 </a>
-<div class="searchwrap"><span class="searchicon">⌕</span><input id="search" type="search" placeholder="문서 검색: 방송 통계, 토토단, 3D 모델…" autocomplete="off" aria-label="문서 검색"><div id="searchResults" class="searchresults"></div></div>
+<div class="searchwrap" role="search">
+<label class="searchicon" for="search" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.2 4.2"></path></svg></label>
+<input id="search" type="search" placeholder="문서 검색" autocomplete="off" aria-label="문서 검색" aria-controls="searchResults" aria-expanded="false">
+<button class="searchclear" id="searchClear" type="button" aria-label="검색어 지우기" hidden>×</button>
+<div id="searchResults" class="searchresults" role="listbox" aria-label="문서 검색 결과"></div>
+</div>
 <div class="topactions social-actions">
 <div class="theme-switch" role="group" aria-label="화면 테마 선택">
 <button class="btn theme-btn" type="button" data-theme="light" aria-pressed="false" title="화이트 테마">☀️ <span>화이트</span></button>
-<button class="btn theme-btn" type="button" data-theme="dark" aria-pressed="false" title="다크 테마">🌙 <span>다크</span></button>
-<button class="btn theme-btn" type="button" data-theme="signature" aria-pressed="true" title="해음위키 전용 테마">✦ <span>전용</span></button>
+<button class="btn theme-btn" type="button" data-theme="dark" aria-pressed="true" title="다크 테마">🌙 <span>다크</span></button>
+<button class="btn theme-btn" type="button" data-theme="signature" aria-pressed="false" title="해음위키 전용 테마">✦ <span>전용</span></button>
 </div>
 <a class="btn social-link" href="https://chzzk.naver.com/aeb616601508d96c0a78e60ac67eb3aa" target="_blank" rel="noopener noreferrer">치지직</a>
 <a class="btn social-link" href="https://cafe.naver.com/haeumm?tc=shared_link" target="_blank" rel="noopener noreferrer">팬카페</a>
@@ -27,7 +32,8 @@
 <button class="btn home-button" id="homeBtn" aria-label="처음으로">홈</button></div>
 </div></header>
 <div class="layout">
-<aside class="sidebar" id="sidebar">
+<button class="menu-backdrop" id="menuBackdrop" type="button" aria-label="메뉴 닫기" tabindex="-1"></button>
+<aside class="sidebar" id="sidebar" aria-label="해음위키 문서 메뉴">
 <div class="sidehead">해음위키 문서</div>
 <a class="navitem active" href="#page-main" data-page="main"><span class="navicon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 10 8.5-7 8.5 7v10a1 1 0 0 1-1 1h-5v-6h-5v6h-5a1 1 0 0 1-1-1z"/></svg></span><span class="navlabel">뭐해음</span></a>
 <a class="navitem" href="#page-broadcast" data-page="broadcast"><span class="navicon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a5 5 0 0 1 0 6M18.5 6.5a9 9 0 0 1 0 11"/></svg></span><span class="navlabel">방송 활동</span></a>
@@ -39,14 +45,14 @@
 <a class="navitem" href="#page-evaluation" data-page="evaluation"><span class="navicon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 2.4 6.1L21 10.5l-6.6 2.4L12 19l-2.4-6.1L3 10.5l6.6-2.4z"/><path d="m19 16 .9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9z"/></svg></span><span class="navlabel">종합 평가</span></a>
 <a class="navitem" href="#page-fandom" data-page="fandom"><span class="navicon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.8c0 5-8.8 11-8.8 11s-8.8-6-8.8-11A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.8z"/></svg></span><span class="navlabel">토토단</span></a>
 <div class="sidehead" style="margin-top:18px">안내</div>
-<div class="muted" style="font-size:12px;padding:0 9px">사용자 제공 자료를 바탕으로 정리한 개인 위키입니다. 공식 사이트가 아닙니다.</div>
+<div class="muted" style="font-size:12px;padding:0 9px">방송 활동과 공개된 커뮤니티 자료를 바탕으로 관련 정보를 정리합니다.</div>
 </aside>
 <main>
 <div class="crumb">해음위키 › <span id="crumbName">뭐해음</span></div>
 
 <section class="page active" id="page-main">
 <article class="article">
-<div class="infobox"><h3>뭐해음</h3><div class="profile-visual"><img class="profile-photo" src="assets/images/haeum-profile.jpg" alt="뭐해음 캐릭터 프로필 일러스트"><div class="profile-caption">대표 캐릭터 이미지 · 1:1 크롭</div></div><div class="profile-data">
+<div class="infobox"><h3>뭐해음</h3><div class="profile-visual"><img class="profile-photo" src="assets/images/haeum-profile.jpg" alt="뭐해음 프로필 일러스트" loading="eager"></div><div class="profile-data">
 <div class="info-row"><b>활동 플랫폼</b><span>치지직</span></div>
 <div class="info-row"><b>첫 방송</b><span>2026년 10월 21일</span></div>
 <div class="info-row"><b>팬덤명</b><span>토토단</span></div>
@@ -62,7 +68,7 @@
 <div class="meta"><span class="pill">치지직 스트리머</span><span class="pill">토크·게임</span><span class="pill">버추얼 모델 준비</span><span class="pill">개인 분석 문서</span></div>
 <p><b>뭐해음</b>은 2026년 10월 21일부터 치지직에서 방송을 시작한 스트리머이다. 토크와 게임을 중심으로 활동하며, 팬 커뮤니티와 SNS를 통해 방송 일정 및 소식을 알리고 있다.</p>
 <p>초기 활동에서는 일러스트 기반의 방송 화면을 사용했으며, 기존 캐릭터의 분위기를 살린 3D 버추얼 모델 제작과 정식 데뷔 방송을 준비하고 있는 것으로 알려져 있다.</p>
-<div class="note">이 문서는 사용자가 제공한 방송 기록, SNS 및 팬카페 게시물, 화면 자료를 바탕으로 정리한 비공식 개인 위키입니다. 확인되지 않은 정보는 사실로 단정하지 않습니다.</div>
+<div class="note">이 문서는 방송 기록과 SNS·팬카페 게시물, 화면 자료를 바탕으로 관련 정보를 정리합니다. 확인되지 않은 정보는 사실로 단정하지 않습니다.</div>
 <div class="toc"><div class="toc-title">목차</div><ol>
 <li><a href="#overview">개요</a></li><li><a href="#style">방송 스타일</a></li><li><a href="#growth">초기 활동 현황</a></li><li><a href="#links">하위 문서</a></li>
 </ol></div>
@@ -507,7 +513,7 @@
 <h1>종합 평가 및 향후 관찰</h1><div class="subtitle">2026년 11월 14일까지 확인된 초기 활동 종합</div>
 <div class="meta"><span class="pill">종합 문서</span><span class="pill">초기 활동 분석</span><span class="pill">기준일 2026.11.14</span></div>
 <p>뭐해음은 2026년 10월 21일 치지직 첫 방송 이후 약 3주 반 동안 방송 활동, 외부 홍보, 팬 커뮤니티 운영, 팬덤명 선정, 3D 버추얼 모델 준비를 병행해 왔다. 현재 단계는 방송의 기본 콘텐츠와 커뮤니티 기반을 형성하고, 향후 버추얼 데뷔를 준비하는 초기 활동기로 정리할 수 있다.</p>
-<div class="note">이 문서는 사용자가 제공한 방송 세션 기록, X 및 팬카페 게시물, 캐릭터·3D 모델 관련 설명을 종합한 비공식 분석이다. 미래의 성장이나 성공을 보장하거나 예측하는 문서는 아니다.</div>
+<div class="note">이 문서는 방송 세션 기록과 X·팬카페 게시물, 캐릭터·3D 모델 관련 자료를 종합한 분석입니다. 미래의 성장이나 성공을 보장하거나 예측하지 않습니다.</div>
 <div class="toc"><div class="toc-title">문서 목차</div><ol><li><a href="#e-overview">활동 현황 요약</a></li><li><a href="#e-content">방송 콘텐츠 기반</a></li><li><a href="#e-community">커뮤니티 형성</a></li><li><a href="#e-identity">캐릭터와 버추얼 전환</a></li><li><a href="#e-strength">확인된 강점과 과제</a></li><li><a href="#e-watch">향후 관찰 지표</a></li><li><a href="#e-conclusion">종합 결론</a></li></ol></div>
 
 <h2 id="e-overview">1. 활동 현황 요약</h2>
@@ -571,8 +577,8 @@
 <h2>2. 공식 발표</h2><p>2026년 11월 10일 팬카페 공지에서 ‘토토단’이 공식 팬덤명으로 발표되었다. 창설일은 투표가 진행된 2026년 11월 8일로 안내되었다.</p>
 </article></section>
 
-<footer class="footer"><strong>해음위키 공식 웹사이트</strong><br>뭐해음의 방송 활동과 관련 정보를 정리하는 팬 제작 비공식 위키입니다.<br><b>최신 버전 v2.5.1</b> · 화이트·다크·해음위키 전용 테마 선택 및 모바일·모바일 웹 사용성 개선<br><span>문서 기준일 2026.11.14 · 자료가 추가되면 최신 내용으로 갱신됩니다.</span></footer>
+<footer class="footer"><strong>해음위키</strong><br>뭐해음의 방송 활동과 관련 정보를 한곳에 정리한 위키입니다.<br><b>최신 버전 v2.5.4</b> · 검색·문서 탐색·모바일 사용성 개선 · 3종 테마 지원<br><span>최종 업데이트 2026.11.14</span></footer>
 </main></div>
-<button class="backtop" id="backtop" title="맨 위로">↑</button>
+<button class="backtop" id="backtop" type="button" title="맨 위로" aria-label="맨 위로 이동" hidden>↑</button>
 <script src="assets/js/app.js" defer></script>
 </body></html>
