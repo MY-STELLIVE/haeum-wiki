@@ -49,3 +49,24 @@ document.addEventListener("click",e=>{
  const sidebar=document.getElementById("sidebar"),menu=document.getElementById("menuBtn");
  if(sidebar.classList.contains("open")&&!sidebar.contains(e.target)&&!menu.contains(e.target))closeMobileNav();
 });
+
+
+// v2.5: three selectable themes (saved on this device).
+const themeButtons = document.querySelectorAll('[data-theme]');
+const themeMeta = document.getElementById('themeColorMeta');
+const themeColors = { light: '#f5f7fb', dark: '#111318', signature: '#090f26' };
+function applyTheme(theme, save = false) {
+  const selected = ['light', 'dark', 'signature'].includes(theme) ? theme : 'signature';
+  document.documentElement.dataset.theme = selected;
+  themeButtons.forEach(button => {
+    const active = button.dataset.theme === selected;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
+  if (themeMeta) themeMeta.setAttribute('content', themeColors[selected]);
+  if (save) { try { localStorage.setItem('haeum-wiki-theme', selected); } catch (_) {} }
+}
+themeButtons.forEach(button => button.addEventListener('click', () => applyTheme(button.dataset.theme, true)));
+let savedTheme = 'signature';
+try { savedTheme = localStorage.getItem('haeum-wiki-theme') || 'signature'; } catch (_) {}
+applyTheme(savedTheme);
