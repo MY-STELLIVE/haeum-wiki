@@ -1,88 +1,90 @@
+/* HAEUM WIKI v2.5.4 — accessible navigation, expanded search and responsive controls */
 const pages={main:"뭐해음",broadcast:"방송 활동",stats:"방송 통계",community:"SNS·팬 커뮤니티",avatar:"캐릭터·버추얼 모델",illustrations:"방송 일러스트",timeline:"활동 연혁",evaluation:"종합 평가",fandom:"토토단"};
+const $=(selector,root=document)=>root.querySelector(selector);
+const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
+const reduceMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sidebar=$('#sidebar'),menuButton=$('#menuBtn'),menuBackdrop=$('#menuBackdrop');
+function closeMenu(){sidebar?.classList.remove('open');document.body.classList.remove('menu-open');menuButton?.setAttribute('aria-expanded','false');menuButton?.setAttribute('aria-label','메뉴 열기');}
+function openMenu(){sidebar?.classList.add('open');document.body.classList.add('menu-open');menuButton?.setAttribute('aria-expanded','true');menuButton?.setAttribute('aria-label','메뉴 닫기');}
 function showPage(id){
-if(!pages[id])id="main";
-const target=document.getElementById("page-"+id);
-document.querySelectorAll(".navitem").forEach(a=>a.classList.toggle("active",a.dataset.page===id));
-document.getElementById("crumbName").textContent=pages[id];
-document.title=pages[id]+" - 해음위키";
-document.getElementById("sidebar").classList.remove("open");
-document.getElementById("searchResults").classList.remove("show");
-document.getElementById("search").value="";
-if(target)window.scrollTo({top:Math.max(0,target.getBoundingClientRect().top+window.scrollY-84),behavior:"smooth"});
+ if(!pages[id])id='main';
+ const target=$(`#page-${id}`);if(!target)return;
+ $$('.navitem').forEach(a=>a.classList.toggle('active',a.dataset.page===id));
+ const crumb=$('#crumbName');if(crumb)crumb.textContent=pages[id];
+ document.title=pages[id]+' - 해음위키 v2.5.4';
+ closeMenu();closeSearch();
+ const search=$('#search');if(search){search.value='';updateClearButton();}
+ target.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'});
 }
-document.querySelectorAll("[data-page]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();showPage(a.dataset.page)}));
-document.getElementById("homeBtn").addEventListener("click",()=>showPage("main"));
-document.querySelector(".brand").addEventListener("click",e=>{e.preventDefault();showPage("main")});
-document.getElementById("menuBtn").addEventListener("click",()=>document.getElementById("sidebar").classList.toggle("open"));
-const searchIndex=[
-["뭐해음","main","문서 개요, 기본 정보, 첫 방송"],
-["방송 활동","broadcast","토크, 게임, 방송 시간대"],
-["방송 통계","stats","22회 방송 기록, 시청자, 채팅"],
-["SNS·팬 커뮤니티","community","X, 네이버 팬카페, 공지"],
-["캐릭터·버추얼 모델","avatar","일러스트, 3D 모델, 정식 데뷔 준비"],
-["방송 일러스트","illustrations","대표 이미지, 방송 공간, 휴식 장면, 원본 일러스트"],
-["활동 연혁","timeline","2026년 10월과 11월 주요 기록"],
-["종합 평가","evaluation","초기 활동 종합, 향후 관찰 지표"],
-["토토단","fandom","팬덤명 투표, 공식 발표"]
-];
-const input=document.getElementById("search"),results=document.getElementById("searchResults");
-function renderSearch(){const q=input.value.trim().toLowerCase();if(!q){results.classList.remove("show");results.innerHTML="";return}const found=searchIndex.filter(x=>(x.join(" ").toLowerCase()).includes(q));results.innerHTML=found.length?found.map(x=>`<a class="result" href="#" data-result="${x[1]}">${x[0]}<small>${x[2]}</small></a>`).join(""):'<div class="result muted">검색 결과가 없습니다.</div>';results.classList.add("show");results.querySelectorAll("[data-result]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();showPage(a.dataset.result)}));}
-input.addEventListener("input",renderSearch);input.addEventListener("keydown",e=>{if(e.key==="Enter"){const first=results.querySelector("[data-result]");if(first)showPage(first.dataset.result)}if(e.key==="Escape")results.classList.remove("show")});
-document.addEventListener("click",e=>{if(!e.target.closest(".searchwrap"))results.classList.remove("show")});
-document.getElementById("backtop").addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
-
-// Keep the sidebar selection synchronized with the section currently being read.
-const sectionObserver = new IntersectionObserver(entries=>{
- const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
- if(!visible)return;
- const id=visible.target.id.replace("page-","");
- document.querySelectorAll(".navitem").forEach(a=>a.classList.toggle("active",a.dataset.page===id));
- const label=pages[id];
- if(label)document.getElementById("crumbName").textContent=label;
-},{rootMargin:"-18% 0px -68% 0px",threshold:[0,.1,.25,.5]});
-document.querySelectorAll('[id^="page-"]').forEach(section=>sectionObserver.observe(section));
-
-
-const closeMobileNav=()=>document.getElementById("sidebar").classList.remove("open");
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMobileNav()});
-document.addEventListener("click",e=>{
- const sidebar=document.getElementById("sidebar"),menu=document.getElementById("menuBtn");
- if(sidebar.classList.contains("open")&&!sidebar.contains(e.target)&&!menu.contains(e.target))closeMobileNav();
+document.addEventListener('click',event=>{
+ const pageLink=event.target.closest('[data-page]');if(pageLink){event.preventDefault();showPage(pageLink.dataset.page);return;}
+ if(event.target.closest('#homeBtn')){showPage('main');return;}
+ if(event.target.closest('#menuBtn')){sidebar?.classList.contains('open')?closeMenu():openMenu();return;}
+ if(event.target.closest('#menuBackdrop')){closeMenu();return;}
+ if(event.target.closest('#backtop')){window.scrollTo({top:0,behavior:reduceMotion()?'auto':'smooth'});return;}
+ if(sidebar?.classList.contains('open')&&!sidebar.contains(event.target)&&!menuButton?.contains(event.target))closeMenu();
+});
+document.addEventListener('keydown',event=>{
+ if(event.key==='Escape'){closeMenu();closeSearch();}
+ if(event.key==='/'&&!/input|textarea|select/i.test(document.activeElement?.tagName||'')){event.preventDefault();$('#search')?.focus();}
 });
 
+// Search across the visible text of each document, not only its title.
+const searchInput=$('#search'),searchResults=$('#searchResults'),searchClear=$('#searchClear');
+const searchIndex=Object.entries(pages).map(([id,title])=>{
+ const section=$(`#page-${id}`);const text=(section?.innerText||'').replace(/\s+/g,' ').trim();
+ return {id,title,text};
+});
+function updateClearButton(){if(searchClear)searchClear.hidden=!(searchInput?.value||'').trim();}
+function closeSearch(){searchResults?.classList.remove('show');searchInput?.setAttribute('aria-expanded','false');}
+function renderSearch(){
+ if(!searchInput||!searchResults)return;
+ const q=searchInput.value.trim().toLocaleLowerCase('ko');updateClearButton();
+ if(!q){closeSearch();searchResults.innerHTML='';return;}
+ const found=searchIndex.filter(row=>(row.title+' '+row.text).toLocaleLowerCase('ko').includes(q));
+ const heading=`<div class="search-results-head"><span>검색 결과</span><small>${found.length}개 문서</small></div>`;
+ const items=found.map(row=>{
+  const at=row.text.toLocaleLowerCase('ko').indexOf(q);let snippet=row.text.slice(Math.max(0,at-38),Math.min(row.text.length,at+100));
+  if(at<0)snippet=row.text.slice(0,105);if(snippet.length>=100)snippet+='…';
+  return `<a class="result" role="option" href="#page-${row.id}" data-result="${row.id}"><span class="result-title">${row.title}</span><small>${snippet.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}</small></a>`;
+ }).join('');
+ searchResults.innerHTML=heading+(items||'<div class="result-empty">검색 결과가 없습니다.</div>');
+ searchResults.classList.add('show');searchInput.setAttribute('aria-expanded','true');
+}
+searchInput?.addEventListener('input',renderSearch);
+searchInput?.addEventListener('keydown',event=>{
+ if(event.key==='Enter'){const first=$('[data-result]',searchResults);if(first){event.preventDefault();showPage(first.dataset.result);}}
+ if(event.key==='Escape'){closeSearch();searchInput.blur();}
+ if(event.key==='ArrowDown'&&searchResults?.classList.contains('show')){$('[data-result]',searchResults)?.focus();}
+});
+searchClear?.addEventListener('click',()=>{if(!searchInput)return;searchInput.value='';renderSearch();searchInput.focus();});
+searchResults?.addEventListener('keydown',event=>{if(event.key==='Escape'){closeSearch();searchInput?.focus();}});
+searchResults?.addEventListener('click',event=>{const result=event.target.closest('[data-result]');if(result){event.preventDefault();showPage(result.dataset.result);}});
+document.addEventListener('click',event=>{if(!event.target.closest('.searchwrap'))closeSearch();});
 
-// v2.5.1: reliable three-theme switching and persistence.
-(() => {
-  const root = document.documentElement;
-  const themeButtons = [...document.querySelectorAll('.theme-btn[data-theme]')];
-  const themeMeta = document.getElementById('themeColorMeta');
-  const themeColors = { light: '#f4f6fa', dark: '#111318', signature: '#101b3c' };
-  const validThemes = Object.keys(themeColors);
-
-  function applyTheme(theme, persist = false) {
-    const selected = validThemes.includes(theme) ? theme : 'signature';
-    root.dataset.theme = selected;
-    root.style.colorScheme = selected === 'light' ? 'light' : 'dark';
-    themeButtons.forEach((button) => {
-      const active = button.dataset.theme === selected;
-      button.classList.toggle('active', active);
-      button.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-    if (themeMeta) themeMeta.setAttribute('content', themeColors[selected]);
-    if (persist) {
-      try { localStorage.setItem('haeum-wiki-theme', selected); } catch (error) { /* storage may be disabled */ }
-    }
-  }
-
-  // Delegation remains reliable if the header is rearranged for mobile.
-  document.addEventListener('click', (event) => {
-    const button = event.target.closest('.theme-btn[data-theme]');
-    if (!button) return;
-    event.preventDefault();
-    applyTheme(button.dataset.theme, true);
-  });
-
-  let initialTheme = 'signature';
-  try { initialTheme = localStorage.getItem('haeum-wiki-theme') || 'signature'; } catch (error) { /* use default */ }
-  applyTheme(initialTheme);
+// Dark is the default. Persist an explicit choice without breaking private browsing.
+(()=>{
+ const root=document.documentElement,buttons=$$('.theme-btn[data-theme]');
+ const colors={light:'#f4f6fa',dark:'#111318',signature:'#101b3c'},valid=new Set(Object.keys(colors));
+ function applyTheme(value,save=false){
+  const theme=valid.has(value)?value:'dark';root.dataset.theme=theme;root.style.colorScheme=theme==='light'?'light':'dark';
+  buttons.forEach(button=>{const active=button.dataset.theme===theme;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
+  const meta=$('#themeColorMeta');if(meta)meta.setAttribute('content',colors[theme]);
+  if(save){try{localStorage.setItem('haeum-wiki-theme-v2',theme);}catch(error){}}
+ }
+ document.addEventListener('click',event=>{const button=event.target.closest('.theme-btn[data-theme]');if(!button)return;event.preventDefault();applyTheme(button.dataset.theme,true);});
+ let initial='dark';try{const saved=localStorage.getItem('haeum-wiki-theme-v2');if(saved&&valid.has(saved))initial=saved;}catch(error){}applyTheme(initial);
 })();
+
+// Back-to-top appears only after the reader has moved down the page.
+(()=>{const button=$('#backtop');if(!button)return;let ticking=false;const update=()=>{button.hidden=window.scrollY<420;ticking=false;};window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true;}},{passive:true});update();})();
+
+// Keep current navigation item aligned with the section in view.
+if('IntersectionObserver'in window){
+ const observer=new IntersectionObserver(entries=>{
+  const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!visible)return;
+  const id=visible.target.id.replace('page-','');$$('.navitem').forEach(a=>a.classList.toggle('active',a.dataset.page===id));
+  if(pages[id]&&$('#crumbName'))$('#crumbName').textContent=pages[id];
+ },{rootMargin:'-18% 0px -68% 0px',threshold:[0,.1,.25,.5]});
+ $$('[id^="page-"]').forEach(section=>observer.observe(section));
+}
