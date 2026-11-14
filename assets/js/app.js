@@ -1,4 +1,4 @@
-/* HAEUM WIKI v2.5.4 — accessible navigation, expanded search and responsive controls */
+/* HAEUM WIKI v2.5.7 — accessible navigation, expanded search and responsive controls */
 const pages={main:"뭐해음",broadcast:"방송 활동",stats:"방송 통계",community:"SNS·팬 커뮤니티",avatar:"캐릭터·버추얼 모델",illustrations:"방송 일러스트",timeline:"활동 연혁",evaluation:"종합 평가",fandom:"토토단"};
 const $=(selector,root=document)=>root.querySelector(selector);
 const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
@@ -11,7 +11,7 @@ function showPage(id){
  const target=$(`#page-${id}`);if(!target)return;
  $$('.navitem').forEach(a=>a.classList.toggle('active',a.dataset.page===id));
  const crumb=$('#crumbName');if(crumb)crumb.textContent=pages[id];
- document.title=pages[id]+' - 해음위키 v2.5.4';
+ document.title=pages[id]+' - 해음위키 v2.5.7';
  closeMenu();closeSearch();
  const search=$('#search');if(search){search.value='';updateClearButton();}
  target.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'});
