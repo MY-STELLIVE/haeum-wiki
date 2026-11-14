@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111318" id="themeColorMeta">
-<title>해음위키 v2.5.7 - 뭐해음</title>
+<title>해음위키 v2.6.0 - 뭐해음</title>
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
+<div class="reading-progress" id="readingProgress" aria-hidden="true"><span id="readingProgressBar"></span></div>
 <header class="topbar"><div class="topinner">
 <button class="btn mobilemenu" id="menuBtn" type="button" aria-label="메뉴 열기" aria-controls="sidebar" aria-expanded="false">☰</button>
 <a class="brand" href="#" data-page="main" aria-label="해음위키 홈">
@@ -167,120 +168,75 @@
 <div class="note">이 문서의 ‘패턴’은 2026년 11월 14일까지 공유된 초기 기록에 한정된다. 이후 방송 일정이 추가되면 분석 결과가 달라질 수 있다.</div>
 </article></section>
 
-<section class="page" id="page-stats"><article class="article">
-<h1>방송 통계</h1><div class="subtitle">Softcon 방송 세션 기록 기반 분석 · 2026년 11월 14일 기준</div>
-<div class="meta"><span class="pill">총 22개 세션</span><span class="pill">10월 21일–11월 14일</span><span class="pill">KST 기준</span></div>
-<p>이 문서는 사용자가 제공한 Softcon 화면에서 확인한 방송 세션을 바탕으로 작성했다. 개별 방송의 시간, 최고·평균 시청자, 채팅 수를 정리하고 기록 범위 안에서 확인할 수 있는 특징을 분석한다.</p>
-<div class="note">통계는 전체 채널의 공식 누적 통계가 아니라 공유된 화면에 표시된 세션 기록이다. 특히 11월 14일 방송은 캡처 시점에 진행 중이었으므로 해당 세션의 시간과 지표는 최종값이 아니다.</div>
-<div class="toc"><div class="toc-title">문서 목차</div><ol><li><a href="#s-overview">핵심 지표</a></li><li><a href="#s-peak">세션별 최고 시청자</a></li><li><a href="#s-average">세션별 평균 시청자</a></li><li><a href="#s-chat">채팅 활동</a></li><li><a href="#s-records">전체 세션 기록</a></li><li><a href="#s-reading">통계 해석과 한계</a></li></ol></div>
+<section class="page" id="page-stats"><article class="article stats-page">
+<h1>방송 통계</h1><div class="subtitle">Softcon 세션 기록을 바탕으로 살펴보는 초기 방송 활동 지표</div>
+<div class="meta"><span class="pill">22개 세션</span><span class="pill">2026.10.21–11.14</span><span class="pill">KST 기준</span><span class="pill">자료 기준일 11.14</span></div>
+<p>이 문서는 사용자가 제공한 Softcon 화면에서 확인한 22개 방송 세션을 세션 단위로 정리한 기록이다. 최고·평균 시청자, 방송 시간, 채팅 수를 구분해 살펴보고, 자료가 보여주는 범위 안에서 초기 방송 활동의 특징을 정리한다.</p>
+<div class="note"><b>자료 범위 안내</b><br>아래 수치는 채널의 공식 누적 통계가 아니라 공유된 화면에 표시된 세션별 기록이다. 11월 14일 세션은 캡처 당시 진행 중이었으며, 방송 시간 3.8시간과 시청자·채팅 지표도 캡처 시점 값이다. 채팅 수가 ‘미기록’인 세션과 화면상 0으로 표시된 세션은 구분해 표기한다.</div>
+<nav class="stats-jump" aria-label="방송 통계 목차"><a href="#st-overview">요약</a><a href="#st-period">기간별 흐름</a><a href="#st-viewers">시청자 지표</a><a href="#st-chat">채팅 활동</a><a href="#st-archive">전체 기록</a><a href="#st-method">해석 기준</a></nav>
 
-<h2 id="s-overview">1. 핵심 지표</h2>
-<div class="metric-grid">
-<div class="metric"><small>기록된 세션</small><strong>22회</strong><span>2026.10.21–11.14</span></div>
-<div class="metric"><small>방송 시간 합계</small><strong>약 63.7h</strong><span>진행 중 세션 포함</span></div>
+<h2 id="st-overview">1. 핵심 지표 요약</h2>
+<div class="metric-grid stats-metrics">
+<div class="metric"><small>기록 세션</small><strong>22회</strong><span>16개 시작일에 분포</span></div>
+<div class="metric"><small>기록 시간 합계</small><strong>약 63.7h</strong><span>진행 중 세션 포함</span></div>
 <div class="metric"><small>최고 동시 시청자</small><strong>20명</strong><span>11월 3일 세션</span></div>
 <div class="metric"><small>최고 평균 시청자</small><strong>15명</strong><span>10월 28일 03:36 세션</span></div>
+<div class="metric"><small>최장 완료 세션</small><strong>6.5h</strong><span>11월 8일 세션</span></div>
 <div class="metric"><small>최다 채팅 기록</small><strong>2,209</strong><span>11월 3일 세션</span></div>
-<div class="metric"><small>세션 평균 최고 시청자</small><strong>13.1명</strong><span>단순 산술 평균</span></div>
 </div>
-<p class="muted" style="font-size:12px">세션 평균 최고 시청자 13.1명은 22개 세션의 ‘최고 시청자’ 숫자를 단순 평균한 값이며, 방송 시간으로 가중한 평균이나 채널의 평균 동시 시청자를 의미하지 않는다.</p>
+<div class="stats-insight-grid">
+<div class="stats-insight"><b>최고 동시 시청자</b><strong>11월 3일 · 20명</strong><p>기록된 22개 세션 중 가장 높은 최고 시청자 수다.</p></div>
+<div class="stats-insight"><b>평균 시청자 최고 세션</b><strong>10월 28일 · 15명</strong><p>03:36 시작 세션에서 확인된 평균 시청자 수다.</p></div>
+<div class="stats-insight"><b>가장 긴 완료 세션</b><strong>11월 8일 · 6.5시간</strong><p>표에 기록된 완료 세션 가운데 가장 긴 방송이다.</p></div>
+</div>
 
-<h2 id="s-peak">2. 세션별 최고 시청자</h2>
-<p>아래 막대는 각 세션에서 기록된 최고 시청자 수를 비교한다. 막대의 최댓값은 이 기록에서 확인된 20명이다.</p>
-<div class="chartbox"><div class="charttitle">최고 동시 시청자 · 세션별</div><div class="barrow"><span>10/21 · 21:43–00:24</span><div class="bartrack"><i style="width:25.0%"></i></div><b>5</b></div>
-<div class="barrow"><span>10/22 · 20:32–23:54</span><div class="bartrack"><i style="width:35.0%"></i></div><b>7</b></div>
-<div class="barrow"><span>10/24 · 02:10–06:12</span><div class="bartrack"><i style="width:80.0%"></i></div><b>16</b></div>
-<div class="barrow"><span>10/25 · 02:23–04:54</span><div class="bartrack"><i style="width:80.0%"></i></div><b>16</b></div>
-<div class="barrow"><span>10/26 · 23:05–23:12</span><div class="bartrack"><i style="width:40.0%"></i></div><b>8</b></div>
-<div class="barrow"><span>10/26 · 23:26–00:36</span><div class="bartrack"><i style="width:55.0%"></i></div><b>11</b></div>
-<div class="barrow"><span>10/27 · 01:15–01:54</span><div class="bartrack"><i style="width:55.0%"></i></div><b>11</b></div>
-<div class="barrow"><span>10/27 · 02:02–03:48</span><div class="bartrack"><i style="width:70.0%"></i></div><b>14</b></div>
-<div class="barrow"><span>10/27 · 22:36–23:06</span><div class="bartrack"><i style="width:50.0%"></i></div><b>10</b></div>
-<div class="barrow"><span>10/27 · 23:22–00:00</span><div class="bartrack"><i style="width:40.0%"></i></div><b>8</b></div>
-<div class="barrow"><span>10/28 · 00:35–00:54</span><div class="bartrack"><i style="width:40.0%"></i></div><b>8</b></div>
-<div class="barrow"><span>10/28 · 00:57–03:30</span><div class="bartrack"><i style="width:75.0%"></i></div><b>15</b></div>
-<div class="barrow"><span>10/28 · 03:36–04:36</span><div class="bartrack"><i style="width:95.0%"></i></div><b>19</b></div>
-<div class="barrow"><span>10/29 · 23:03–03:18</span><div class="bartrack"><i style="width:85.0%"></i></div><b>17</b></div>
-<div class="barrow"><span>11/02 · 23:59–03:30</span><div class="bartrack"><i style="width:75.0%"></i></div><b>15</b></div>
-<div class="barrow"><span>11/03 · 20:03–01:42</span><div class="bartrack"><i style="width:100.0%"></i></div><b>20</b></div>
-<div class="barrow"><span>11/05 · 23:35–04:48</span><div class="bartrack"><i style="width:80.0%"></i></div><b>16</b></div>
-<div class="barrow"><span>11/08 · 20:02–02:30</span><div class="bartrack"><i style="width:95.0%"></i></div><b>19</b></div>
-<div class="barrow"><span>11/10 · 20:32–01:12</span><div class="bartrack"><i style="width:70.0%"></i></div><b>14</b></div>
-<div class="barrow"><span>11/11 · 20:18–01:30</span><div class="bartrack"><i style="width:80.0%"></i></div><b>16</b></div>
-<div class="barrow"><span>11/12 · 20:02–23:48</span><div class="bartrack"><i style="width:65.0%"></i></div><b>13</b></div>
-<div class="barrow"><span>11/14 · 15:02–진행 중</span><div class="bartrack"><i style="width:50.0%"></i></div><b>10</b></div></div>
-<p>최고 기록은 11월 3일 20명이다. 다음으로 10월 28일 03:36 세션과 11월 8일 세션에서 각각 19명이 기록되었다.</p>
+<h2 id="st-period">2. 방송 기록의 기간별 흐름</h2>
+<h3>2.1 초기 방송 구간 · 10월 21일~25일</h3>
+<p>첫 방송일인 10월 21일부터 10월 25일까지 4개 세션이 기록되어 있다. 첫 두 세션의 평균 시청자는 각각 4명과 5명이었고, 10월 24일과 25일에는 평균 9명과 11명으로 기록되었다. 이 구간은 기록 초반의 세션별 차이를 보여주지만, 표본이 적고 방송 시간대도 달라 이를 지속적인 상승 추세로 단정할 수는 없다.</p>
+<h3>2.2 세션이 집중된 구간 · 10월 26일~29일</h3>
+<p>이 기간에는 10개 세션이 기록되어 전체 세션의 상당 부분이 집중되어 있다. 특히 10월 27일에는 4개 세션, 10월 28일에는 3개 세션이 각각 기록되었다. 같은 날짜의 세션도 서로 다른 시작·종료 시각과 지표를 유지해 개별 행으로 보존했다.</p>
+<h3>2.3 11월 기록 구간 · 11월 2일~14일</h3>
+<p>11월에는 8개 세션이 기록되어 있다. 11월 3일은 최고 시청자 20명과 채팅 2,209건을 기록했고, 11월 8일은 완료 세션 중 가장 긴 6.5시간으로 기록되었다. 11월 11일에는 채팅 1,929건이 확인된다. 각 기록은 서로 다른 방송 길이와 콘텐츠 조건에서 나온 값이므로 하나의 순위만으로 방송의 전반적인 반응을 평가하지 않는다.</p>
+<div class="stats-periods">
+<div><span>10/21–10/25</span><b>4세션</b><small>초기 기록</small></div>
+<div><span>10/26–10/29</span><b>10세션</b><small>세션 집중 구간</small></div>
+<div><span>11/02–11/14</span><b>8세션</b><small>11/14 진행 중 포함</small></div>
+</div>
 
-<h2 id="s-average">3. 세션별 평균 시청자</h2>
-<p>평균 시청자 기록은 세션별로 4~15명 범위에 분포한다. 아래 비교 역시 세션 단위의 원자료를 그대로 표시한 것이다.</p>
-<div class="chartbox"><div class="charttitle">평균 시청자 · 세션별</div><div class="barrow"><span>10/21</span><div class="bartrack average"><i style="width:26.7%"></i></div><b>4</b></div>
-<div class="barrow"><span>10/22</span><div class="bartrack average"><i style="width:33.3%"></i></div><b>5</b></div>
-<div class="barrow"><span>10/24</span><div class="bartrack average"><i style="width:60.0%"></i></div><b>9</b></div>
-<div class="barrow"><span>10/25</span><div class="bartrack average"><i style="width:73.3%"></i></div><b>11</b></div>
-<div class="barrow"><span>10/26</span><div class="bartrack average"><i style="width:53.3%"></i></div><b>8</b></div>
-<div class="barrow"><span>10/26</span><div class="bartrack average"><i style="width:53.3%"></i></div><b>8</b></div>
-<div class="barrow"><span>10/27</span><div class="bartrack average"><i style="width:60.0%"></i></div><b>9</b></div>
-<div class="barrow"><span>10/27</span><div class="bartrack average"><i style="width:66.7%"></i></div><b>10</b></div>
-<div class="barrow"><span>10/27</span><div class="bartrack average"><i style="width:46.7%"></i></div><b>7</b></div>
-<div class="barrow"><span>10/27</span><div class="bartrack average"><i style="width:40.0%"></i></div><b>6</b></div>
-<div class="barrow"><span>10/28</span><div class="bartrack average"><i style="width:46.7%"></i></div><b>7</b></div>
-<div class="barrow"><span>10/28</span><div class="bartrack average"><i style="width:80.0%"></i></div><b>12</b></div>
-<div class="barrow"><span>10/28</span><div class="bartrack average"><i style="width:100.0%"></i></div><b>15</b></div>
-<div class="barrow"><span>10/29</span><div class="bartrack average"><i style="width:60.0%"></i></div><b>9</b></div>
-<div class="barrow"><span>11/02</span><div class="bartrack average"><i style="width:66.7%"></i></div><b>10</b></div>
-<div class="barrow"><span>11/03</span><div class="bartrack average"><i style="width:93.3%"></i></div><b>14</b></div>
-<div class="barrow"><span>11/05</span><div class="bartrack average"><i style="width:66.7%"></i></div><b>10</b></div>
-<div class="barrow"><span>11/08</span><div class="bartrack average"><i style="width:86.7%"></i></div><b>13</b></div>
-<div class="barrow"><span>11/10</span><div class="bartrack average"><i style="width:66.7%"></i></div><b>10</b></div>
-<div class="barrow"><span>11/11</span><div class="bartrack average"><i style="width:73.3%"></i></div><b>11</b></div>
-<div class="barrow"><span>11/12</span><div class="bartrack average"><i style="width:66.7%"></i></div><b>10</b></div>
-<div class="barrow"><span>11/14</span><div class="bartrack average"><i style="width:53.3%"></i></div><b>8</b></div></div>
-<p>가장 높은 평균 시청자는 10월 28일 03:36 세션의 15명이다. 11월 3일 세션은 평균 14명, 11월 8일 세션은 평균 13명으로 기록되었다.</p>
+<h2 id="st-viewers">3. 시청자 지표</h2>
+<h3>3.1 세션별 최고 동시 시청자</h3>
+<p>최고 동시 시청자는 개별 세션에서 기록된 순간 최대치다. 전체 기록의 최고값은 11월 3일 20명이며, 10월 28일 03:36 세션과 11월 8일 세션에서 각각 19명이 기록되었다.</p>
+<div class="stats-chart"><div class="stats-chart-title">세션별 최고 동시 시청자 · 단위: 명</div><div class="statbar-row"><span>10/21 · 21:43–00:24</span><div class="statbar-track"><i style="width:25%"></i></div><b>5명</b></div><div class="statbar-row"><span>10/22 · 20:32–23:54</span><div class="statbar-track"><i style="width:35%"></i></div><b>7명</b></div><div class="statbar-row"><span>10/24 · 02:10–06:12</span><div class="statbar-track"><i style="width:80%"></i></div><b>16명</b></div><div class="statbar-row"><span>10/25 · 02:23–04:54</span><div class="statbar-track"><i style="width:80%"></i></div><b>16명</b></div><div class="statbar-row"><span>10/26 · 23:05–23:12</span><div class="statbar-track"><i style="width:40%"></i></div><b>8명</b></div><div class="statbar-row"><span>10/26 · 23:26–00:36</span><div class="statbar-track"><i style="width:55%"></i></div><b>11명</b></div><div class="statbar-row"><span>10/27 · 01:15–01:54</span><div class="statbar-track"><i style="width:55%"></i></div><b>11명</b></div><div class="statbar-row"><span>10/27 · 02:02–03:48</span><div class="statbar-track"><i style="width:70%"></i></div><b>14명</b></div><div class="statbar-row"><span>10/27 · 22:36–23:06</span><div class="statbar-track"><i style="width:50%"></i></div><b>10명</b></div><div class="statbar-row"><span>10/27 · 23:22–00:00</span><div class="statbar-track"><i style="width:40%"></i></div><b>8명</b></div><div class="statbar-row"><span>10/28 · 00:35–00:54</span><div class="statbar-track"><i style="width:40%"></i></div><b>8명</b></div><div class="statbar-row"><span>10/28 · 00:57–03:30</span><div class="statbar-track"><i style="width:75%"></i></div><b>15명</b></div><div class="statbar-row"><span>10/28 · 03:36–04:36</span><div class="statbar-track"><i style="width:95%"></i></div><b>19명</b></div><div class="statbar-row"><span>10/29 · 23:03–03:18</span><div class="statbar-track"><i style="width:85%"></i></div><b>17명</b></div><div class="statbar-row"><span>11/02 · 23:59–03:30</span><div class="statbar-track"><i style="width:75%"></i></div><b>15명</b></div><div class="statbar-row"><span>11/03 · 20:03–01:42</span><div class="statbar-track"><i style="width:100%"></i></div><b>20명</b></div><div class="statbar-row"><span>11/05 · 23:35–04:48</span><div class="statbar-track"><i style="width:80%"></i></div><b>16명</b></div><div class="statbar-row"><span>11/08 · 20:02–02:30</span><div class="statbar-track"><i style="width:95%"></i></div><b>19명</b></div><div class="statbar-row"><span>11/10 · 20:32–01:12</span><div class="statbar-track"><i style="width:70%"></i></div><b>14명</b></div><div class="statbar-row"><span>11/11 · 20:18–01:30</span><div class="statbar-track"><i style="width:80%"></i></div><b>16명</b></div><div class="statbar-row"><span>11/12 · 20:02–23:48</span><div class="statbar-track"><i style="width:65%"></i></div><b>13명</b></div><div class="statbar-row"><span>11/14 · 15:02–진행 중</span><div class="statbar-track"><i style="width:50%"></i></div><b>10명</b></div></div>
+<h3>3.2 세션별 평균 시청자</h3>
+<p>평균 시청자는 각 세션의 평균값으로 기록된 숫자다. 가장 높은 값은 10월 28일 03:36 세션의 15명이며, 다음은 11월 3일 14명, 11월 8일 13명이다.</p>
+<div class="stats-chart"><div class="stats-chart-title">세션별 평균 시청자 · 단위: 명</div><div class="statbar-row"><span>10/21 · 21:43–00:24</span><div class="statbar-track avg"><i style="width:26.7%"></i></div><b>4명</b></div><div class="statbar-row"><span>10/22 · 20:32–23:54</span><div class="statbar-track avg"><i style="width:33.3%"></i></div><b>5명</b></div><div class="statbar-row"><span>10/24 · 02:10–06:12</span><div class="statbar-track avg"><i style="width:60.0%"></i></div><b>9명</b></div><div class="statbar-row"><span>10/25 · 02:23–04:54</span><div class="statbar-track avg"><i style="width:73.3%"></i></div><b>11명</b></div><div class="statbar-row"><span>10/26 · 23:05–23:12</span><div class="statbar-track avg"><i style="width:53.3%"></i></div><b>8명</b></div><div class="statbar-row"><span>10/26 · 23:26–00:36</span><div class="statbar-track avg"><i style="width:53.3%"></i></div><b>8명</b></div><div class="statbar-row"><span>10/27 · 01:15–01:54</span><div class="statbar-track avg"><i style="width:60.0%"></i></div><b>9명</b></div><div class="statbar-row"><span>10/27 · 02:02–03:48</span><div class="statbar-track avg"><i style="width:66.7%"></i></div><b>10명</b></div><div class="statbar-row"><span>10/27 · 22:36–23:06</span><div class="statbar-track avg"><i style="width:46.7%"></i></div><b>7명</b></div><div class="statbar-row"><span>10/27 · 23:22–00:00</span><div class="statbar-track avg"><i style="width:40.0%"></i></div><b>6명</b></div><div class="statbar-row"><span>10/28 · 00:35–00:54</span><div class="statbar-track avg"><i style="width:46.7%"></i></div><b>7명</b></div><div class="statbar-row"><span>10/28 · 00:57–03:30</span><div class="statbar-track avg"><i style="width:80.0%"></i></div><b>12명</b></div><div class="statbar-row"><span>10/28 · 03:36–04:36</span><div class="statbar-track avg"><i style="width:100.0%"></i></div><b>15명</b></div><div class="statbar-row"><span>10/29 · 23:03–03:18</span><div class="statbar-track avg"><i style="width:60.0%"></i></div><b>9명</b></div><div class="statbar-row"><span>11/02 · 23:59–03:30</span><div class="statbar-track avg"><i style="width:66.7%"></i></div><b>10명</b></div><div class="statbar-row"><span>11/03 · 20:03–01:42</span><div class="statbar-track avg"><i style="width:93.3%"></i></div><b>14명</b></div><div class="statbar-row"><span>11/05 · 23:35–04:48</span><div class="statbar-track avg"><i style="width:66.7%"></i></div><b>10명</b></div><div class="statbar-row"><span>11/08 · 20:02–02:30</span><div class="statbar-track avg"><i style="width:86.7%"></i></div><b>13명</b></div><div class="statbar-row"><span>11/10 · 20:32–01:12</span><div class="statbar-track avg"><i style="width:66.7%"></i></div><b>10명</b></div><div class="statbar-row"><span>11/11 · 20:18–01:30</span><div class="statbar-track avg"><i style="width:73.3%"></i></div><b>11명</b></div><div class="statbar-row"><span>11/12 · 20:02–23:48</span><div class="statbar-track avg"><i style="width:66.7%"></i></div><b>10명</b></div><div class="statbar-row"><span>11/14 · 15:02–진행 중</span><div class="statbar-track avg"><i style="width:53.3%"></i></div><b>8명</b></div></div>
+<div class="note">‘세션 평균 최고 시청자 13.1명’은 22개 세션의 최고 시청자 숫자를 단순 산술 평균한 값이다. 방송 시간으로 가중한 평균 시청자나 채널 전체의 평균 동시 시청자를 뜻하지 않는다. 세션별 평균 시청자 값 역시 채널 규모나 고유 시청자 수와 동일한 개념이 아니다.</div>
 
-<h2 id="s-chat">4. 채팅 활동</h2>
-<p>기록된 채팅 수 중 가장 큰 값은 11월 3일의 2,209건이다. 이어 11월 11일 1,929건, 11월 8일 1,747건, 10월 24일 1,627건이 확인된다.</p>
-<div class="tablewrap"><table><thead><tr><th>날짜</th><th>채팅 수</th><th>함께 확인된 평균 시청자</th><th>메모</th></tr></thead><tbody>
-<tr><td>11/03</td><td><b>2,209</b></td><td>14명</td><td>전체 기록 중 최다</td></tr>
-<tr><td>11/11</td><td>1,929</td><td>11명</td><td>사연형 참여 콘텐츠가 편성된 날</td></tr>
-<tr><td>11/08</td><td>1,747</td><td>13명</td><td>장시간 방송 세션</td></tr>
+<h2 id="st-chat">4. 채팅 활동</h2>
+<p>수치가 확인되는 세션 중 가장 많은 채팅은 11월 3일 2,209건이다. 이어 11월 11일 1,929건, 11월 8일 1,747건, 10월 24일 1,627건이 기록되어 있다.</p>
+<div class="tablewrap"><table class="stats-table"><thead><tr><th>날짜</th><th>채팅 수</th><th>평균 시청자</th><th>기록 메모</th></tr></thead><tbody>
+<tr><td>11/03</td><td><b>2,209</b></td><td>14명</td><td>기록상 최다 채팅</td></tr>
+<tr><td>11/11</td><td>1,929</td><td>11명</td><td>사연형 참여 콘텐츠 일정</td></tr>
+<tr><td>11/08</td><td>1,747</td><td>13명</td><td>최장 완료 세션</td></tr>
 <tr><td>10/24</td><td>1,627</td><td>9명</td><td>새벽 시간대 세션</td></tr>
 <tr><td>11/05</td><td>1,408</td><td>10명</td><td>심야 시작 세션</td></tr>
 <tr><td>11/12</td><td>1,110</td><td>10명</td><td>토크·게임 일정</td></tr>
 </tbody></table></div>
-<p>채팅 수는 방송 길이와 시청자 참여 방식의 영향을 함께 받을 수 있다. 따라서 채팅 수가 많다는 사실만으로 시청자 만족도나 충성도를 단정할 수는 없다.</p>
+<p>기록된 숫자만 합산하면 채팅 수는 17,651건이다. 다만 10월 26일 두 세션은 채팅 수가 미기록이므로 이 합계는 전체 22개 세션의 완전한 누적 채팅 수가 아니다. 10월 27일 두 세션의 0은 원 화면에서 숫자 0으로 표시된 값이며, 실제 채팅이 없었던 것인지 수집 누락인지는 확인되지 않았다.</p>
+<p>채팅 수는 방송 길이와 시청자 참여 방식의 영향을 함께 받을 수 있다. 따라서 채팅 수만으로 만족도, 충성도 또는 고유 참여자 수를 추정하지 않는다.</p>
 
-<h2 id="s-records">5. 전체 세션 기록</h2>
-<p>아래 표는 원자료를 세션별로 보존한 목록이다. 날짜는 방송 시작일 기준이며, 종료 시각이 다음 날인 경우에도 시작일 행에 기록했다.</p>
-<div class="tablewrap"><table><thead><tr><th>날짜</th><th>시작–종료 (KST)</th><th>시간</th><th>최고</th><th>평균</th><th>채팅</th></tr></thead><tbody><tr><td>10/21</td><td>21:43–00:24</td><td>2.7h</td><td>5</td><td>4</td><td>468</td></tr>
-<tr><td>10/22</td><td>20:32–23:54</td><td>3.4h</td><td>7</td><td>5</td><td>443</td></tr>
-<tr><td>10/24</td><td>02:10–06:12</td><td>4.0h</td><td>16</td><td>9</td><td>1,627</td></tr>
-<tr><td>10/25</td><td>02:23–04:54</td><td>2.5h</td><td>16</td><td>11</td><td>1,037</td></tr>
-<tr><td>10/26</td><td>23:05–23:12</td><td>0.1h</td><td>8</td><td>8</td><td>미기록</td></tr>
-<tr><td>10/26</td><td>23:26–00:36</td><td>1.2h</td><td>11</td><td>8</td><td>미기록</td></tr>
-<tr><td>10/27</td><td>01:15–01:54</td><td>0.6h</td><td>11</td><td>9</td><td>0*</td></tr>
-<tr><td>10/27</td><td>02:02–03:48</td><td>1.8h</td><td>14</td><td>10</td><td>0*</td></tr>
-<tr><td>10/27</td><td>22:36–23:06</td><td>0.5h</td><td>10</td><td>7</td><td>143</td></tr>
-<tr><td>10/27</td><td>23:22–00:00</td><td>0.6h</td><td>8</td><td>6</td><td>121</td></tr>
-<tr><td>10/28</td><td>00:35–00:54</td><td>0.3h</td><td>8</td><td>7</td><td>31</td></tr>
-<tr><td>10/28</td><td>00:57–03:30</td><td>2.5h</td><td>15</td><td>12</td><td>906</td></tr>
-<tr><td>10/28</td><td>03:36–04:36</td><td>1.0h</td><td>19</td><td>15</td><td>476</td></tr>
-<tr><td>10/29</td><td>23:03–03:18</td><td>4.2h</td><td>17</td><td>9</td><td>948</td></tr>
-<tr><td>11/02</td><td>23:59–03:30</td><td>3.5h</td><td>15</td><td>10</td><td>956</td></tr>
-<tr><td>11/03</td><td>20:03–01:42</td><td>5.6h</td><td>20</td><td>14</td><td>2,209</td></tr>
-<tr><td>11/05</td><td>23:35–04:48</td><td>5.2h</td><td>16</td><td>10</td><td>1,408</td></tr>
-<tr><td>11/08</td><td>20:02–02:30</td><td>6.5h</td><td>19</td><td>13</td><td>1,747</td></tr>
-<tr><td>11/10</td><td>20:32–01:12</td><td>4.7h</td><td>14</td><td>10</td><td>1,185</td></tr>
-<tr><td>11/11</td><td>20:18–01:30</td><td>5.2h</td><td>16</td><td>11</td><td>1,929</td></tr>
-<tr><td>11/12</td><td>20:02–23:48</td><td>3.8h</td><td>13</td><td>10</td><td>1,110</td></tr>
-<tr><td>11/14</td><td>15:02–진행 중</td><td>캡처 시 3.8h</td><td>10</td><td>8</td><td>907</td></tr></tbody></table></div>
-<p class="muted" style="font-size:12px">* 10월 27일 두 세션의 채팅 수 0은 화면상 0으로 표시된 값이다. 실제 채팅이 없었던 것인지 수집 누락인지는 확인되지 않았다. ‘미기록’은 제공된 화면에서 수치를 확인할 수 없었던 항목이다.</p>
+<h2 id="st-archive">5. 전체 세션 원자료</h2>
+<p>아래 표는 22개 세션을 원자료 단위로 보존한 목록이다. 날짜는 방송 시작일 기준이며, 종료 시각이 다음 날인 경우에도 시작일 행에 기록했다.</p>
+<div class="tablewrap"><table class="stats-table"><thead><tr><th>날짜</th><th>시작–종료 (KST)</th><th>시간</th><th>최고</th><th>평균</th><th>채팅</th></tr></thead><tbody><tr><td>10/21</td><td>21:43–00:24</td><td>2.7h</td><td>5</td><td>4</td><td>468</td></tr><tr><td>10/22</td><td>20:32–23:54</td><td>3.4h</td><td>7</td><td>5</td><td>443</td></tr><tr><td>10/24</td><td>02:10–06:12</td><td>4.0h</td><td>16</td><td>9</td><td>1,627</td></tr><tr><td>10/25</td><td>02:23–04:54</td><td>2.5h</td><td>16</td><td>11</td><td>1,037</td></tr><tr><td>10/26</td><td>23:05–23:12</td><td>0.1h</td><td>8</td><td>8</td><td>미기록</td></tr><tr><td>10/26</td><td>23:26–00:36</td><td>1.2h</td><td>11</td><td>8</td><td>미기록</td></tr><tr><td>10/27</td><td>01:15–01:54</td><td>0.6h</td><td>11</td><td>9</td><td>0*</td></tr><tr><td>10/27</td><td>02:02–03:48</td><td>1.8h</td><td>14</td><td>10</td><td>0*</td></tr><tr><td>10/27</td><td>22:36–23:06</td><td>0.5h</td><td>10</td><td>7</td><td>143</td></tr><tr><td>10/27</td><td>23:22–00:00</td><td>0.6h</td><td>8</td><td>6</td><td>121</td></tr><tr><td>10/28</td><td>00:35–00:54</td><td>0.3h</td><td>8</td><td>7</td><td>31</td></tr><tr><td>10/28</td><td>00:57–03:30</td><td>2.5h</td><td>15</td><td>12</td><td>906</td></tr><tr><td>10/28</td><td>03:36–04:36</td><td>1.0h</td><td>19</td><td>15</td><td>476</td></tr><tr><td>10/29</td><td>23:03–03:18</td><td>4.2h</td><td>17</td><td>9</td><td>948</td></tr><tr><td>11/02</td><td>23:59–03:30</td><td>3.5h</td><td>15</td><td>10</td><td>956</td></tr><tr><td>11/03</td><td>20:03–01:42</td><td>5.6h</td><td>20</td><td>14</td><td>2,209</td></tr><tr><td>11/05</td><td>23:35–04:48</td><td>5.2h</td><td>16</td><td>10</td><td>1,408</td></tr><tr><td>11/08</td><td>20:02–02:30</td><td>6.5h</td><td>19</td><td>13</td><td>1,747</td></tr><tr><td>11/10</td><td>20:32–01:12</td><td>4.7h</td><td>14</td><td>10</td><td>1,185</td></tr><tr><td>11/11</td><td>20:18–01:30</td><td>5.2h</td><td>16</td><td>11</td><td>1,929</td></tr><tr><td>11/12</td><td>20:02–23:48</td><td>3.8h</td><td>13</td><td>10</td><td>1,110</td></tr><tr><td>11/14</td><td>15:02–진행 중</td><td>캡처 시 3.8h</td><td>10</td><td>8</td><td>907</td></tr></tbody></table></div>
+<p class="muted stats-footnote">* 10월 27일 두 세션의 채팅 수 0은 화면상 0으로 표시된 값이다. ‘미기록’은 제공된 화면에서 수치를 확인할 수 없었던 항목이다. 11월 14일은 진행 중 캡처이므로 시간과 지표 모두 최종값이 아니다.</p>
 
-<h2 id="s-reading">6. 통계 해석과 한계</h2>
-<h3>6.1 확인 가능한 흐름</h3>
-<ul><li>기록상 최고 동시 시청자는 11월 3일 20명이다.</li><li>세션별 평균 시청자 최고값은 10월 28일 03:36 세션의 15명이다.</li><li>최다 채팅 기록은 11월 3일 2,209건이다.</li><li>11월 8일 세션은 6.5시간으로, 표에 포함된 세션 중 가장 긴 완료 세션이다. 11월 14일은 캡처 당시 3.8시간 진행 중이었다.</li></ul>
-<h3>6.2 해석 시 주의할 점</h3>
-<ul><li>세션 수와 방송한 날짜 수는 다르다. 같은 날짜에 여러 세션이 기록된 경우가 있다.</li><li>방송이 자정을 넘으면 세션 시작일과 종료일이 달라질 수 있다.</li><li>11월 14일 세션은 진행 중 캡처이므로 완료된 방송과 직접 비교할 때 주의해야 한다.</li><li>Softcon 기록 합산 약 63.7시간과 치지직 프로필 화면의 60시간 표시는 캡처 시점이나 집계 범위가 다를 수 있다.</li><li>이 자료만으로 팔로워 전환율, 재방문율, 순시청자 수, 시청자별 체류 시간은 계산할 수 없다.</li></ul>
-<div class="note">이 통계는 초기 활동을 관찰하기 위한 기록 아카이브다. 표본 기간이 짧고 세션별 조건이 달라 장기 성장 추세나 향후 성과를 확정적으로 예측하는 자료로 사용해서는 안 된다.</div>
+<h2 id="st-method">6. 통계 해석과 한계</h2>
+<h3>6.1 기록을 읽을 때의 기준</h3>
+<ul><li><b>세션 수와 방송 날짜 수는 다르다.</b> 같은 날짜에 여러 세션이 기록된 경우가 있으므로 22개 세션을 22일 방송으로 해석하지 않는다.</li><li><b>시작일 기준으로 정리한다.</b> 자정을 넘긴 방송도 시작한 날짜에 기록한다.</li><li><b>완료 세션과 진행 중 세션을 구분한다.</b> 11월 14일 세션은 캡처 시점의 중간값이다.</li><li><b>미기록과 0을 구분한다.</b> 확인할 수 없는 값은 0으로 대체하지 않는다.</li><li><b>단순 평균의 의미를 제한한다.</b> 세션별 숫자를 단순 평균한 값은 시간 가중 통계와 다르다.</li></ul>
+<h3>6.2 현재 자료로 확인할 수 없는 지표</h3>
+<p>현재 자료만으로는 순시청자 수, 시청자별 평균 체류 시간, 재방문율, 팔로워 전환율, 방송 유입 경로, 채팅 참여 고유 인원 등을 계산할 수 없다. 해당 지표는 필요한 원자료가 확보되기 전까지 추정하지 않는다.</p>
+<div class="note"><b>종합 해석</b><br>현재 기록은 첫 방송 이후 약 3주간의 초기 세션 아카이브다. 이 자료에서 확인되는 주요 기록은 11월 3일의 최고 동시 시청자 20명·채팅 2,209건, 10월 28일 세션의 평균 시청자 15명, 11월 8일의 최장 완료 세션 6.5시간이다. 이는 관측된 세션의 기록이며 장기 성장 추세나 향후 성과를 확정하는 근거로 사용하지 않는다.</div>
+<div class="stats-update"><b>자료 갱신 안내</b><span>새로운 방송 세션이 확인되면 동일한 기준으로 원자료 표에 추가하고, 요약 지표와 비교 분석을 함께 갱신한다.</span></div>
 </article></section>
 
 <section class="page" id="page-community"><article class="article">
@@ -577,7 +533,7 @@
 <h2>2. 공식 발표</h2><p>2026년 11월 10일 팬카페 공지에서 ‘토토단’이 공식 팬덤명으로 발표되었다. 창설일은 투표가 진행된 2026년 11월 8일로 안내되었다.</p>
 </article></section>
 
-<footer class="footer"><strong>해음위키</strong><br>뭐해음의 방송 활동과 관련 정보를 한곳에 정리한 위키입니다.<br><b>최신 버전 v2.5.7</b> · 투명 워드마크 적용 · 프로필 및 문서 화면 정돈 · 모바일 사용성 개선<br><span>최종 업데이트 2026.11.14</span></footer>
+<footer class="footer"><strong>해음위키</strong><br>뭐해음의 방송 활동과 관련 정보를 한곳에 정리한 위키입니다.<br><b>최신 버전 v2.6.0</b> · 모바일 문서 탐색 개선 · 읽기 진행 표시 · 표·목차 사용성 개선<br><span>최종 업데이트 2026.11.14</span></footer>
 </main></div>
 <button class="backtop" id="backtop" type="button" title="맨 위로" aria-label="맨 위로 이동" hidden>↑</button>
 <script src="assets/js/app.js" defer></script>
