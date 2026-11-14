@@ -175,3 +175,69 @@ body{background:radial-gradient(ellipse at 12% 0%,#263f80 0,transparent 34%),rad
 .artwork-card figcaption{padding:9px 5px 2px;text-align:right;color:#b9cbed;font-size:12px}
 .praise{margin:14px 0 22px;padding:14px 16px;border:1px solid #6e8dc255;border-left:3px solid #ffb6d8;border-radius:12px;background:linear-gradient(110deg,#20396c,#2a2859);line-height:1.8}
 #page-illustrations .article>h2{margin-top:34px}
+
+
+/* v2.5 theme selector + semantic theme tokens */
+.theme-switch{display:flex;align-items:center;gap:4px;padding:3px;border:1px solid #719de955;border-radius:13px;background:#0d1838aa}
+.theme-btn{min-height:38px;padding:6px 9px;font-size:12px;white-space:nowrap}
+.theme-btn.active{border-color:#a9d2ff;background:linear-gradient(135deg,#34558a,#45366e);color:#fff;box-shadow:0 0 0 1px #a9d2ff35 inset}
+.theme-btn span{font-size:11px}
+/* Neutral dark theme */
+:root[data-theme="dark"]{color-scheme:dark;--bg:#111318;--panel:#1b1e25;--panel2:#252a33;--text:#edf0f5;--muted:#a7afbd;--line:#363d49;--accent:#a9c8f5;--accent2:#d3def0;--pink:#e7a9c8;--glow:0 12px 34px #0007}
+:root[data-theme="dark"] body{background:radial-gradient(ellipse at 15% 0%,#29313d 0,transparent 36%),var(--bg)}
+:root[data-theme="dark"] .topbar{background:#111318ed;border-color:var(--line)}
+:root[data-theme="dark"] .searchwrap input,:root[data-theme="dark"] .btn{background:var(--panel);border-color:var(--line);color:var(--text)}
+:root[data-theme="dark"] .sidebar{background:var(--panel)}
+:root[data-theme="dark"] .navitem.active{background:#303a49;border-color:#52647d;box-shadow:inset 3px 0 var(--accent)}
+:root[data-theme="dark"] .navicon{background:#2b323e;border-color:#424c5b;color:#d7e5fa}
+:root[data-theme="dark"] .article,:root[data-theme="dark"] .page + .page .article{background:linear-gradient(145deg,#242a34,#1b1e25 60%,#252630)}
+:root[data-theme="dark"] .article h1{background:none;color:var(--text)}
+:root[data-theme="dark"] .infobox{background:linear-gradient(125deg,#303a49,#242832);border-color:#566174;box-shadow:0 0 0 1px #fff1 inset,0 12px 30px #0006}
+:root[data-theme="dark"] .pill,:root[data-theme="dark"] .chartbox{background:#252b35;border-color:#414b59}
+:root[data-theme="dark"] .metric,:root[data-theme="dark"] .phasecard{background:#252c37;border-color:#414d5d}
+:root[data-theme="dark"] .timebody{background:#252c37;border-color:#414d5d}
+:root[data-theme="dark"] .note,:root[data-theme="dark"] .praise{background:#272e39;border-color:#53647c;color:#e0e6ef}
+:root[data-theme="dark"] .artwork-card{background:#202631;border-color:#465365}
+:root[data-theme="dark"] .article .toc{background:#202630;border-color:#465365}
+:root[data-theme="dark"] .crumb{background:#202630;border-color:#465365}
+:root[data-theme="dark"] .theme-switch{background:#1b1e25;border-color:#424b58}
+:root[data-theme="dark"] .theme-btn.active{background:#3a4657;border-color:#9bb9e3}
+/* White theme */
+:root[data-theme="light"]{color-scheme:light;--bg:#f4f6fa;--panel:#fff;--panel2:#edf1f7;--text:#202938;--muted:#657187;--line:#d8deea;--accent:#315f9e;--accent2:#3e5d88;--pink:#b95e8b;--glow:0 10px 28px #25385812}
+:root[data-theme="light"] body{background:radial-gradient(ellipse at 12% 0%,#dce9fb 0,transparent 38%),var(--bg)}
+:root[data-theme="light"] .topbar{background:#ffffffed;border-color:var(--line);box-shadow:0 5px 22px #263b5b12}
+:root[data-theme="light"] .brandword{color:#24334b}
+:root[data-theme="light"] .searchwrap input,:root[data-theme="light"] .btn{background:#fff;border-color:var(--line);color:var(--text)}
+:root[data-theme="light"] .sidebar{background:#fff;border-color:var(--line)}
+:root[data-theme="light"] .navitem{color:#536178}
+:root[data-theme="light"] .navitem.active{background:#e7effa;border-color:#c7d7ee;color:#243d61;box-shadow:inset 3px 0 #4e7eb8}
+:root[data-theme="light"] .navicon{background:#e8eff8;border-color:#cbd8e9;color:#426b9f}
+:root[data-theme="light"] .article,:root[data-theme="light"] .page + .page .article{background:linear-gradient(145deg,#fff,#f8faff 70%,#f1f5fb);border-color:var(--line)}
+:root[data-theme="light"] .article h1{background:none;color:#263b5b}
+:root[data-theme="light"] .article h2{border-color:#d9e1ed}
+:root[data-theme="light"] .infobox{background:linear-gradient(125deg,#edf4ff,#f8f2fa);border-color:#c7d6eb;box-shadow:0 0 0 1px #fff inset,0 10px 28px #25385812}
+:root[data-theme="light"] .info-row{border-color:#d8e1ee}
+:root[data-theme="light"] .info-row b{color:#5a6d88}
+:root[data-theme="light"] .profile-links a{color:#294d7c;background:#e8f1fc;border-color:#b9cde7}
+:root[data-theme="light"] .pill{background:#edf3fb;border-color:#d4dfed;color:#526782}
+:root[data-theme="light"] .note,:root[data-theme="light"] .praise{background:#edf4fc;border-color:#cbd9eb;color:#354a67}
+:root[data-theme="light"] .article .toc,:root[data-theme="light"] .chartbox{background:#f1f5fb;border-color:#d4deeb}
+:root[data-theme="light"] .metric,:root[data-theme="light"] .phasecard{background:linear-gradient(145deg,#edf4fc,#f8faff);border-color:#d1deed}
+:root[data-theme="light"] .metric small,:root[data-theme="light"] .metric span,:root[data-theme="light"] .phasecard p{color:#5c6c83}
+:root[data-theme="light"] .metric strong,:root[data-theme="light"] .phasecard b{color:#2e4c76}
+:root[data-theme="light"] .timebody{background:#f0f4fa;border-color:#d5dfec}
+:root[data-theme="light"] .timebody b,:root[data-theme="light"] .barrow b{color:#2c405e}
+:root[data-theme="light"] .timebody p,:root[data-theme="light"] .barrow span{color:#596b83}
+:root[data-theme="light"] .bartrack{background:#dce5f1}
+:root[data-theme="light"] .artwork-card{background:#f1f5fb;border-color:#cbd8e9}
+:root[data-theme="light"] .artwork-card a{background:#e5ebf4}
+:root[data-theme="light"] .artwork-card figcaption{color:#5d6e86}
+:root[data-theme="light"] .crumb{background:#edf2f8;border-color:#d7e0ec}
+:root[data-theme="light"] th{background:#e7eef8;color:#34547f}
+:root[data-theme="light"] td,:root[data-theme="light"] th{border-color:#d5deea}
+:root[data-theme="light"] .theme-switch{background:#f0f3f8;border-color:#d4dce8}
+:root[data-theme="light"] .theme-btn.active{background:#dce9f8;border-color:#7395c1;color:#254b7c}
+:root[data-theme="light"] .searchresults{background:#fff;border-color:#d5deea}
+:root[data-theme="light"] .result{color:#25364e}
+:root[data-theme="light"] .result:hover{background:#edf3fa}
+:root[data-theme="light"] .backtop{background:#fff;color:#25364e;border-color:#d3dce8}
