@@ -1,4 +1,4 @@
-/* HAEUM WIKI v2.6.2 — accessible navigation, expanded search and responsive controls */
+/* HAEUM WIKI v2.6.3 — accessible navigation, expanded search and responsive controls */
 const pages={main:"뭐해음",broadcast:"방송 활동",stats:"방송 통계",community:"SNS·팬 커뮤니티",avatar:"캐릭터·버추얼 모델",illustrations:"방송 일러스트",timeline:"활동 연혁",evaluation:"종합 평가",fandom:"토토단"};
 const $=(selector,root=document)=>root.querySelector(selector);
 const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
@@ -11,7 +11,7 @@ function showPage(id){
  const target=$(`#page-${id}`);if(!target)return;
  $$('.navitem').forEach(a=>a.classList.toggle('active',a.dataset.page===id));
  const crumb=$('#crumbName');if(crumb)crumb.textContent=pages[id];
- document.title=pages[id]+' - 해음위키 v2.6.2';
+ document.title=pages[id]+' - 해음위키 v2.6.6';
  closeMenu();closeSearch();
  const search=$('#search');if(search){search.value='';updateClearButton();}
  target.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'});
@@ -114,7 +114,7 @@ if('IntersectionObserver'in window){
 })();
 
 
-// v2.6.2 — related-document navigation across the wiki.
+// v2.6.3 — related-document navigation across the wiki.
 (()=>{
  const relations={
   main:['broadcast','stats','community','avatar','illustrations','timeline','fandom'],
@@ -158,4 +158,27 @@ if('IntersectionObserver'in window){
   const note=$('.note:last-of-type',article);
   article.append(section);
  });
+})();
+
+
+// v2.6.6 — apply shared visual classes to existing controls and content blocks.
+(()=>{
+ const decorate=()=>{
+  document.querySelectorAll('.profile-links a,.stats-jump a').forEach(a=>a.classList.add('ui-btn','ui-btn-secondary'));
+  document.querySelectorAll('.toc a').forEach(a=>a.classList.add('ui-btn','ui-btn-quiet'));
+  document.querySelectorAll('.subcard').forEach(card=>card.classList.add('ui-card'));
+  document.querySelectorAll('.related-card').forEach(card=>card.classList.add('ui-card-link'));
+  document.querySelectorAll('.note').forEach(note=>note.classList.add('ui-callout'));
+  document.querySelectorAll('.metric').forEach(metric=>metric.classList.add('ui-stat'));
+  document.querySelectorAll('.stats-insight').forEach(card=>card.classList.add('ui-card'));
+  document.querySelectorAll('.theme-btn').forEach(button=>button.classList.add('ui-btn','ui-btn-sm','ui-btn-secondary'));
+  document.querySelectorAll('.social-link,.home-button').forEach(button=>button.classList.add('ui-btn','ui-btn-sm','ui-btn-secondary'));
+  document.querySelectorAll('.navitem').forEach(link=>{
+   if(link.classList.contains('active'))link.setAttribute('aria-current','page');
+   else link.removeAttribute('aria-current');
+  });
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',decorate,{once:true});else decorate();
+ const observer=new MutationObserver(()=>decorate());
+ observer.observe(document.body,{childList:true,subtree:true});
 })();
