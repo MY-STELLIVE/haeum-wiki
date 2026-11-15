@@ -1,0 +1,257 @@
+/* HAEUM WIKI v2.8.0 — mobile layout stabilization
+   Load this file AFTER all existing stylesheets and inline style blocks. */
+
+@media (max-width: 700px) {
+  /* Keep the document in one readable vertical flow. */
+  .article,
+  .article > *,
+  .profile-document > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .article > h1,
+  .article > h2,
+  .article > h3,
+  .article > p,
+  .article > ul,
+  .article > ol,
+  .article > .note,
+  .article > .toc,
+  .article > .tablewrap,
+  .article > .subgrid,
+  .article > .stats-chart,
+  .article > .stats-periods,
+  .article > .stats-insight-grid,
+  .article > .metric-grid,
+  .profile-document > h2,
+  .profile-document > h3,
+  .profile-document > p,
+  .profile-document > .tablewrap,
+  .profile-document > .subgrid {
+    float: none !important;
+    clear: both;
+    display: block;
+    width: 100%;
+  }
+
+  .article > h2,
+  .profile-document > h2 {
+    margin: 26px 0 11px;
+    padding: 0 0 9px !important;
+    font-size: 19px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .article > p,
+  .profile-document > p {
+    margin: 0 0 13px;
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  /* Profile panel: image first, readable metadata below it. */
+  .profile-document .infobox {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    width: 100% !important;
+    padding: 14px !important;
+    overflow: visible;
+  }
+
+  .profile-document .infobox > h3 {
+    order: 0;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 0 10px !important;
+  }
+
+  .profile-document .infobox > .profile-visual {
+    order: 1;
+    width: min(100%, 190px) !important;
+    max-width: 190px !important;
+    margin: 0 auto !important;
+  }
+
+  .profile-document .infobox > .profile-visual .profile-photo {
+    display: block;
+    width: 100% !important;
+    max-width: 190px !important;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .profile-document .infobox > .profile-data {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .profile-document .profile-data .info-row {
+    display: grid;
+    grid-template-columns: minmax(88px, 34%) minmax(0, 1fr) !important;
+    gap: 9px;
+    padding: 9px 2px;
+    font-size: 13px !important;
+    line-height: 1.55;
+  }
+
+  .profile-document .profile-data .profile-links {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 7px;
+    margin-top: 12px;
+  }
+
+  .profile-document .profile-data .profile-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 42px;
+    font-size: 12px;
+  }
+
+  .profile-document .infobox > .profile-heading {
+    order: 3;
+    width: 100% !important;
+    margin: 5px 0 0 !important;
+    padding: 14px 0 0 !important;
+    border-top: 1px solid var(--line);
+  }
+
+  .profile-document .profile-heading h1 {
+    font-size: 27px;
+    line-height: 1.25;
+  }
+
+  .profile-document .profile-heading .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* Intro, note and contents use the full available width. */
+  .profile-document .profile-lead {
+    display: block !important;
+    width: 100%;
+    margin: 16px 0 !important;
+  }
+
+  .profile-document .profile-lead p {
+    max-width: none;
+    margin: 0 0 11px !important;
+    font-size: 14px !important;
+    line-height: 1.9 !important;
+  }
+
+  .profile-document .profile-toc {
+    width: 100%;
+    padding: 13px;
+  }
+
+  .profile-document .profile-toc ol {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 6px;
+  }
+
+  /* Cards and tables must not squeeze their contents. */
+  .profile-document > .subgrid,
+  .article .subgrid,
+  .article .related-grid {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 9px;
+  }
+
+  .article .tablewrap {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .article .tablewrap table {
+    width: 100%;
+    min-width: 560px;
+    table-layout: auto;
+  }
+
+  .article .tablewrap th,
+  .article .tablewrap td {
+    padding: 9px 10px;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+
+  /* A stable crop prevents the banner from collapsing or stretching. */
+  .main-hero-banner {
+    width: 100%;
+    aspect-ratio: 2.65 / 1;
+    overflow: hidden;
+  }
+
+  .main-hero-banner img {
+    display: block;
+    width: 100%;
+    height: 100% !important;
+    aspect-ratio: auto !important;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .subcard.has-thumb {
+    grid-template-columns: 82px minmax(0, 1fr);
+    min-height: 76px;
+  }
+
+  .subcard.has-thumb img {
+    width: 100%;
+    height: 66px;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 380px) {
+  .article {
+    padding: 12px 10px !important;
+  }
+
+  .profile-document .infobox {
+    padding: 11px !important;
+  }
+
+  .profile-document .profile-data .info-row {
+    grid-template-columns: 78px minmax(0, 1fr) !important;
+    gap: 6px;
+    font-size: 12px !important;
+  }
+
+  .article > p,
+  .profile-document > p,
+  .profile-document .profile-lead p {
+    font-size: 13.5px !important;
+  }
+
+  .article .tablewrap table {
+    min-width: 520px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-document *,
+  .article * {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
