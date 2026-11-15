@@ -77,3 +77,53 @@
  .stats-page .statbar-row{grid-template-columns:minmax(0,1fr) 58px 32px;gap:5px;font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){.toc ol,.toc-toggle,.related-card,.subcard{transition:none!important}}
+
+
+/* v2.7.8 — 프로필 소개 문단 및 본문 타이포그래피 정리 */
+/* 프로필 소개도 하단 본문과 같은 일반 문서 문단으로 표시 */
+.profile-document .profile-lead{
+ display:block;
+ margin:14px 0 18px;
+}
+.profile-document .profile-lead p{
+ max-width:78ch;
+ margin:0 0 13px;
+ padding:0;
+ border:0;
+ border-radius:0;
+ background:transparent;
+ font:inherit;
+ line-height:1.9;
+}
+.profile-document .profile-lead p:first-child{border-left:0}
+.profile-document .profile-lead p:last-child{margin-bottom:0}
+
+/* 본문 글자 크기와 제목 위계를 통일 */
+.article{font-size:15px}
+.article>p{font-size:15px;line-height:1.9}
+.article h2{font-size:22px;line-height:1.4}
+.article h3{font-size:17px;line-height:1.5}
+.article .tablewrap th,
+.article .tablewrap td{font-size:13px;line-height:1.65}
+
+@media(max-width:700px){
+ .article{font-size:14.5px}
+ .article>p{font-size:14.5px;line-height:1.9}
+ .profile-document .profile-lead{display:block}
+ .profile-document .profile-lead p{
+  max-width:none;
+  margin:0 0 12px;
+  padding:0;
+  font-size:14.5px;
+  line-height:1.9;
+ }
+ .article h2{font-size:20px;line-height:1.45}
+ .article h3{font-size:16px;line-height:1.5}
+ .article .tablewrap th,
+ .article .tablewrap td{font-size:12.5px}
+}
+@media(max-width:380px){
+ .article>p,
+ .profile-document .profile-lead p{font-size:14px}
+ .article h2{font-size:19px}
+}
